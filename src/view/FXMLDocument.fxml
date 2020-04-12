@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="430.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pharmapp_test.FXMLDocumentController">
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="424.0" prefWidth="202.0" style="-fx-background-color: #D9E2E8;">
+         <children>
+            <AnchorPane layoutX="-2.0" layoutY="1.0" prefHeight="437.0" prefWidth="50.0" style="-fx-background-color: #043D68;">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </AnchorPane>
+            <JFXButton layoutY="77.0" prefHeight="51.0" prefWidth="226.0" text="Accueil" />
+            <JFXButton layoutY="128.0" prefHeight="51.0" prefWidth="226.0" text="Médicaments" />
+            <JFXButton layoutY="179.0" prefHeight="51.0" prefWidth="226.0" text="Fournisseurs" />
+            <JFXButton layoutY="230.0" prefHeight="51.0" prefWidth="226.0" text="Ventes" />
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="224.0" layoutY="-1.0" prefHeight="430.0" prefWidth="476.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

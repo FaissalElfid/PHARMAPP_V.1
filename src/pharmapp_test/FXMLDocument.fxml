@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="430.0" prefWidth="700.0" style="-fx-min-height: 400; -fx-max-height: 800; -fx-pref-height: 600; -fx-pref-width: 1200; -fx-min-width: 300; -fx-max-width: 1500;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FirstController">
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="430.0" prefWidth="213.0" style="-fx-background-color: #F2F5F7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="-2.0" layoutY="1.0" prefHeight="563.0" prefWidth="57.0" style="-fx-background-color: #043D68;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </AnchorPane>
+            <JFXButton fx:id="accueil" alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="40.0" layoutY="115.0" onAction="#imaneInAction" prefHeight="51.0" prefWidth="240.0" text="Accueil" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/house-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_menu_medicament" alignment="BASELINE_LEFT" graphicTextGap="40.0" layoutX="-1.0" layoutY="375.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="240.0" text="Médicaments" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/seo-tips-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="btn_commandes" alignment="BASELINE_LEFT" graphicTextGap="40.0" layoutY="273.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="234.0" text="Commandes" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/truck-2-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="btn_ventes" alignment="BASELINE_LEFT" graphicTextGap="40.0" layoutX="2.0" layoutY="171.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="240.0" text=" Ventes" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cart-29-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <ImageView fitHeight="140.0" fitWidth="148.0" layoutX="66.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="423.0" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../images/pharmapp%20logo%20java.png" />
+               </image>
+            </ImageView>
+            <Line endX="121.0" endY="1.0" layoutX="121.0" layoutY="169.0" startX="-72.0" startY="1.0" stroke="#043d68" AnchorPane.bottomAnchor="392.5" AnchorPane.leftAnchor="48.5" AnchorPane.rightAnchor="0.5" AnchorPane.topAnchor="169.5" />
+            <Line endX="121.0" endY="1.0" layoutX="119.0" layoutY="373.0" startX="-69.0" startY="1.0" stroke="#043d68" AnchorPane.leftAnchor="49.5" AnchorPane.rightAnchor="0.5" />
+            <JFXButton fx:id="btn_achats" alignment="BASELINE_LEFT" graphicTextGap="40.0" layoutX="2.0" layoutY="222.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="240.0" text="Achats" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cart-43-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_Reglements" alignment="BASELINE_LEFT" graphicTextGap="40.0" layoutY="324.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="243.0" text="Réglements" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="41.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/credit-card-6-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_client" alignment="BASELINE_LEFT" graphicTextGap="40.0" layoutX="-1.0" layoutY="426.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="243.0" text="Clients" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/user-3-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_fournisseurs" alignment="BASELINE_LEFT" graphicTextGap="40.0" layoutY="477.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="243.0" text="Fournisseurs" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/businessman-512.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="242.0" prefHeight="563.0" prefWidth="458.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="242.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Pane fx:id="pnl_ventes" layoutX="24.0" layoutY="7.0" prefHeight="563.0" prefWidth="458.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton buttonType="RAISED" defaultButton="true" layoutX="716.0" layoutY="92.0" prefHeight="35.0" prefWidth="135.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Ajouter au panier" textFill="WHITE" />
+                  <JFXTextField layoutX="97.0" layoutY="97.0" prefHeight="25.0" prefWidth="180.0" promptText="Code produit" />
+                  <JFXTextField layoutX="412.0" layoutY="97.0" prefHeight="25.0" prefWidth="154.0" promptText="Quantité" />
+                  <TableView layoutX="110.0" layoutY="150.0" prefHeight="263.0" prefWidth="695.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <JFXTextField layoutX="375.0" layoutY="448.0" prefHeight="35.0" prefWidth="191.0" promptText="Code client" />
+                  <JFXToggleButton layoutX="112.0" layoutY="419.0" prefHeight="35.0" prefWidth="171.0" text="Client passager" />
+                  <Hyperlink layoutX="424.0" layoutY="546.0" text="Ajouter client">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Hyperlink>
+                  <Label layoutX="700.0" layoutY="428.0" prefHeight="20.0" prefWidth="57.0" text="Total" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="412.0" layoutY="27.0" prefHeight="47.0" prefWidth="191.0" text="Votre panier" textFill="#043d68">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+                  <JFXButton buttonType="RAISED" defaultButton="true" layoutX="784.0" layoutY="537.0" prefHeight="47.0" prefWidth="104.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Valider" textFill="WHITE" />
+                  <JFXButton buttonType="RAISED" defaultButton="true" layoutX="644.0" layoutY="537.0" prefHeight="47.0" prefWidth="113.0" ripplerFill="BLACK" style="-fx-background-color: #E0E0E0;" text="Annuler" textFill="#009688" />
+                  <JFXTextField layoutX="375.0" layoutY="504.0" prefHeight="35.0" prefWidth="191.0" promptText="Code client" text="Montant payé" />
+               </children>
+            </Pane>
+            <Pane fx:id="pnl_achats" layoutX="14.0" layoutY="-3.0" prefHeight="563.0" prefWidth="458.0" style="-fx-background-color: #D9E2E8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXSpinner layoutX="204.0" layoutY="232.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="pnl_reglement" layoutX="34.0" layoutY="17.0" prefHeight="563.0" prefWidth="458.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="pnl_fournisseurs" layoutX="24.0" layoutY="-1.0" prefHeight="563.0" prefWidth="458.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTimePicker layoutX="181.0" layoutY="233.0" />
+                  <JFXTextArea layoutX="181.0" layoutY="153.0" prefHeight="18.0" prefWidth="180.0" promptText="Nom" />
+                  <JFXTextField layoutX="181.0" layoutY="94.0" promptText="Entrer votre nom :" />
+               </children>
+            </Pane>
+            <AnchorPane fx:id="anchor_commandes" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTabPane fx:id="pnl_commande" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab text="Alerts">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXListView layoutX="63.0" layoutY="34.0" prefHeight="419.0" prefWidth="464.0" />
+                                    <HBox layoutX="63.0" layoutY="34.0" prefHeight="51.0" prefWidth="459.0" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Commandes en cours">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          </content>
+                        </Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchor_client" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTabPane fx:id="tab_pane_client" prefHeight="563.0" prefWidth="458.0" rotateGraphic="true" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab text="Clients">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="486.0" />
+                          </content>
+                        </Tab>
+                        <Tab text="Ajouter">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          </content>
+                        </Tab>
+                        <Tab text="Untitled Tab">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          </content>
+                        </Tab>
+                        <Tab text="Untitled Tab">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          </content>
+                        </Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchor_medic" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTabPane fx:id="tabpane_medicament" prefHeight="600.0" prefWidth="958.0" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab fx:id="tabpane_tab_medicament" text="Médicaments">
+                           <content>
+                              <AnchorPane fx:id="pane_medic" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="table_medic" layoutX="100.0" layoutY="91.0" prefHeight="344.0" prefWidth="573.0" stylesheets="@../style/TableView.css" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="285.0" AnchorPane.topAnchor="91.0">
+                                      <columns>
+                                          <TableColumn fx:id="table_medic_code" prefWidth="200.0" text="Code Médicaments" />
+                                          <TableColumn fx:id="table_medic_libelle" prefWidth="190.0" text="Libelle" />
+                                          <TableColumn fx:id="table_medic_categorie" prefWidth="177.0" text="Catégorie" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Ajouter">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXTextField layoutX="227.0" layoutY="110.0" prefHeight="44.0" prefWidth="249.0" promptText="Code médicament">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <Label layoutX="23.0" layoutY="51.0" prefHeight="28.0" prefWidth="406.0" text="Veuillez entrer les données concernant le produit :">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField layoutX="225.0" layoutY="195.0" prefHeight="35.0" prefWidth="252.0" promptText="Désignation">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField layoutX="226.0" layoutY="288.0" promptText="Prix de vente">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXDatePicker layoutX="586.0" layoutY="114.0" prefHeight="35.0" prefWidth="260.0" promptText="Date d'éxpiration" />
+                                    <JFXTextField layoutX="586.0" layoutY="200.0" prefHeight="36.0" prefWidth="243.0" promptText="Quantité en stock">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextArea layoutX="226.0" layoutY="434.0" prefHeight="110.0" prefWidth="352.0" promptText="Remarque" text="Remarques&#10;" />
+                                    <JFXButton buttonType="RAISED" defaultButton="true" layoutX="716.0" layoutY="434.0" prefHeight="63.0" prefWidth="140.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Ajouter" textFill="WHITE" />
+                                    <JFXTextField layoutX="583.0" layoutY="288.0" prefHeight="25.0" prefWidth="249.0" promptText="Marque">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField layoutX="225.0" layoutY="368.0" promptText="Catégorie">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Modifier">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
