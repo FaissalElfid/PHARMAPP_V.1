@@ -19,10 +19,10 @@ and open the template in the editor.
    to the edge of the tableview, or up to the 'column control' button. */
 .table-view .filler, .tree-table-view .filler, .table-view .column-header,
 .tree-table-view .column-header {
-    -fx-size: 65;
+    -fx-size: 60;
     -fx-border-style: null;
     -fx-border-color: -swatch-grey;
-    -fx-border-width: 0 0 2 0;
+    -fx-border-width: 0 0 6 0;
     -fx-background-color: transparent;
 }
 .table-view .column-header,

@@ -100,9 +100,12 @@ public class FirstController implements Initializable {
         /*table medicament dans alert commande*/
         final ObservableList<Table_Commande> alerts = FXCollections.observableArrayList(
         new Table_Commande(1,"doliprane",3),
-        new Table_Commande(2,"vitamine c",1),
-        new Table_Commande(3,"Bavette",2),
-        new Table_Commande(4,"Dentifrice(2)",0)   
+        new Table_Commande(12,"EVOX 500 MG, Comprimé pelliculé",1),
+        new Table_Commande(3,"Bavettes",2),
+        new Table_Commande(5,"ALKERAN 2 MG, Comprimé",0),   
+        new Table_Commande(2,"INNOHEP 3500 UI ANTI-XA / 0,35 ML, Solution injectable",0),
+        new Table_Commande(25,"DIETAZ, Solution buvable",2),   
+        new Table_Commande(115,"ETOPOSIDE COOPER 50 MG, Capsule, Boite 4",01)   
         );
         System.out.println(alerts);
         table_alerts.setItems(alerts);
