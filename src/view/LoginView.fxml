@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <ImageView fitHeight="440.0" fitWidth="760.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../images/Picture1.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="458.0" prefHeight="431.0" prefWidth="303.0" style="-fx-background-color: #EEF7FC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="458.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="154.0" fitWidth="169.0" layoutX="75.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pharmapp%20logo%20java.png" />
+               </image>
+            </ImageView>
+            <Label contentDisplay="CENTER" layoutX="83.0" layoutY="129.0" prefHeight="38.0" prefWidth="154.0" text="Se Connecter" textAlignment="CENTER" textFill="#043d68" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Microsoft JhengHei" size="23.0" />
+               </font>
+            </Label>
+            <JFXTextField layoutX="83.0" layoutY="200.0" prefHeight="31.0" prefWidth="154.0" promptText="Nom utilisateur" />
+            <JFXPasswordField layoutX="84.0" layoutY="272.0" prefHeight="25.0" prefWidth="154.0" promptText="Mot de passe" stylesheets="@../style/main.css" />
+            <Hyperlink layoutX="57.0" layoutY="390.0" text="Informations de compte oubliées ?">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Hyperlink>
+            <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="34.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/user-2-512.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="34.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/key-2-512.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btn_login" layoutX="115.0" layoutY="331.0" onAction="#loginInAction" style="-fx-border-color: #043D68; -fx-border-radius: 5px;" text="Connexion" textFill="#043d68">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

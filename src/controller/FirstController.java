@@ -11,8 +11,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +26,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import Bean.Medicament;
+import Bean.Table_Commande;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.cell.CheckBoxTableCell;
 
 /**
  * FXML Controller class
@@ -40,8 +45,6 @@ public class FirstController implements Initializable {
      * Initializes the controller class.
      */
     
-        @FXML
-    private JFXButton accueil;
          @FXML
     private Pane pnl_achats, pnl_ventes, pnl_reglement, pnl_fournisseurs;
     
@@ -68,10 +71,50 @@ public class FirstController implements Initializable {
 
     @FXML
     private TableColumn<Medicament, String> table_medic_categorie;
+    
+    @FXML
+    private TableView<Table_Commande> table_alerts;
 
+    @FXML
+    private TableColumn<Table_Commande, Number> alert_id_produit;
+
+    @FXML
+    private TableColumn<Table_Commande, String> alert_libelle_produit;
+
+    @FXML
+    private TableColumn<Table_Commande, Number> alert_quantite;
+
+    @FXML
+    private TableColumn<Table_Commande, Boolean> alert_select;
+
+    @FXML
+    private JFXToggleButton toggle_btn_passager;
+    
+     @FXML
+    private JFXTextField text_vente_code_client;
+
+    @FXML
+    private Hyperlink text_vente_link_client;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        /*table medicament dans alert commande*/
+        final ObservableList<Table_Commande> alerts = FXCollections.observableArrayList(
+        new Table_Commande(1,"doliprane",3),
+        new Table_Commande(2,"vitamine c",1),
+        new Table_Commande(3,"Bavette",2),
+        new Table_Commande(4,"Dentifrice(2)",0)   
+        );
+        System.out.println(alerts);
+        table_alerts.setItems(alerts);
+        alert_id_produit.setCellValueFactory(new PropertyValueFactory<>("idProperty"));
+        alert_libelle_produit.setCellValueFactory(new PropertyValueFactory<>("libelleProperty"));
+        alert_quantite.setCellValueFactory(new PropertyValueFactory<>("quantiteProperty"));
+         alert_select.setEditable(true);
+        alert_select.setCellValueFactory(new PropertyValueFactory<>("statutProperty"));
+        alert_select.setCellFactory(CheckBoxTableCell.forTableColumn(alert_select));
+        table_alerts.setEditable(true);
         
+        /*table Medicament dans la rubrique table*/
         final ObservableList<Medicament> medicaments = FXCollections.observableArrayList(
                 new Medicament(1,"doliprane","blabla"), 
                 new Medicament(2, "Aspijique", "jsp"),
@@ -83,6 +126,24 @@ public class FirstController implements Initializable {
         
         table_medic.setItems(medicaments);       
 
+    toggle_btn_passager.selectedProperty().addListener(new ChangeListener < Boolean >()
+        {
+        @Override
+        public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2){
+         if (toggle_btn_passager.isSelected() == true){
+             toggle_btn_passager.setText("Client passager");
+             text_vente_code_client.setVisible(false);
+             text_vente_link_client.setVisible(false);
+         }   
+         else{
+             toggle_btn_passager.setText("Endettement client");
+             text_vente_code_client.setVisible(true);
+             text_vente_link_client.setVisible(true);
+         }
+        }
+        });
+    
+    
     } 
     
    @FXML
@@ -114,34 +175,7 @@ public class FirstController implements Initializable {
 //@Override
 //    public void initialize(URL url, ResourceBundle rb) {
 //    }
-    @FXML
-    void imaneInAction(ActionEvent event) {
-
- 
-
- accueil.getScene().getWindow().hide();
-
-            Parent root= null;
-
-        try {
-
-            root = FXMLLoader.load(getClass().getResource("/view/imane.fxml"));
-
-        } catch (IOException ex) {
-
-            Logger.getLogger(FirstController.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-
-            Stage stage = new Stage();
-
-            Scene scene = new Scene(root);
-
-            stage.setScene(scene);
-
-            stage.show();
-
-    }
+    
      
     
 }
