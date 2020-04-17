@@ -27,12 +27,22 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import Bean.Medicament;
 import Bean.Table_Commande;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import java.io.File;
+import java.net.MalformedURLException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -52,11 +62,13 @@ public class FirstController implements Initializable {
     private JFXButton btn_ventes, btn_achats, btn_commandes, btn_Reglements, btn_menu_medicament;
     
     @FXML
-    private JFXButton btn_client, btn_fournisseurs;
+    private JFXButton btn_client, btn_fournisseurs, btn_fileChoser, btn_empl;
+    
     
     @FXML
-    private AnchorPane anchor_medic, anchor_client;
-
+    private AnchorPane anchor_medic, anchor_client ,anchor_emp;
+  @FXML
+  private Circle img_emp;
     @FXML
     private AnchorPane anchor_commandes;
     
@@ -92,17 +104,28 @@ public class FirstController implements Initializable {
     
      @FXML
     private JFXTextField text_vente_code_client;
+    @FXML
+    private JFXComboBox combobox_emp;
 
     @FXML
     private Hyperlink text_vente_link_client;
+     private String imageFile;
+     
+     ObservableList<String> emploi = FXCollections.observableArrayList("Gérant","Vendeur","Administrateur","Pharmacien");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         Image image = new Image("/images/cravata.jpg");
+         img_emp.setFill(new ImagePattern(image));
+                 
+        //ajoute des emploi dans combobox
+        combobox_emp.setItems(emploi);
+        
         /*table medicament dans alert commande*/
         final ObservableList<Table_Commande> alerts = FXCollections.observableArrayList(
         new Table_Commande(1,"doliprane",3),
-        new Table_Commande(12,"EVOX 500 MG, Comprimé pelliculé",1),
+        new Table_Commande(12,"EVOX 500 MG, ComprimÃ© pelliculÃ©",1),
         new Table_Commande(3,"Bavettes",2),
-        new Table_Commande(5,"ALKERAN 2 MG, Comprimé",0),   
+        new Table_Commande(5,"ALKERAN 2 MG, ComprimÃ©",0),   
         new Table_Commande(2,"INNOHEP 3500 UI ANTI-XA / 0,35 ML, Solution injectable",0),
         new Table_Commande(25,"DIETAZ, Solution buvable",2),   
         new Table_Commande(115,"ETOPOSIDE COOPER 50 MG, Capsule, Boite 4",01)   
@@ -151,7 +174,8 @@ public class FirstController implements Initializable {
     
    @FXML
     private void handleButtonAction(ActionEvent event) {
-        if(event.getSource()==btn_ventes){
+         System.out.println(event.getSource());
+        if(event.getSource()== btn_ventes){
             pnl_ventes.toFront();
         }
         else if(event.getSource() == btn_achats){
@@ -162,6 +186,7 @@ public class FirstController implements Initializable {
         }
         else if(event.getSource() == btn_menu_medicament){
             anchor_medic.toFront();
+           
         }
         else if(event.getSource() == btn_client){
             anchor_client.toFront();
@@ -172,9 +197,35 @@ public class FirstController implements Initializable {
         else if(event.getSource() == btn_Reglements){
             pnl_reglement.toFront();
         }
+        else if(event.getSource() == btn_empl){
+            
+            anchor_emp.toFront();
+            
         
+        }
+       
     
     }
+   
+   @FXML
+   private void handleOnMouseClicked(MouseEvent event) throws MalformedURLException {
+	   FileChooser fc=new  FileChooser();
+                  fc.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files",
+                        "*.bmp", "*.png", "*.jpg", "*.gif")); 
+	   File f=fc.showOpenDialog(null);
+	   if(f!=null) {
+         imageFile = f.toURI().toURL().toString();
+          Image image = new Image(imageFile);
+         img_emp.setFill(new ImagePattern(image));
+
+        } 
+    }
+		   
+	   
+	   
+	   
+  
 //@Override
 //    public void initialize(URL url, ResourceBundle rb) {
 //    }
