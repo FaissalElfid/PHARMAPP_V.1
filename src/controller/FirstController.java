@@ -5,6 +5,7 @@
  */
 package controller;
 
+import bean.Produit;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -25,13 +26,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import Bean.Medicament;
-import Bean.Table_Commande;
+import view.table.Medicament;
+import view.table.Table_Commande;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import dao.ProduitDao;
 import java.io.File;
 import java.net.MalformedURLException;
+import javafx.animation.PauseTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Hyperlink;
@@ -43,6 +48,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
+import service.ProduitService;
 
 /**
  * FXML Controller class
@@ -64,7 +71,12 @@ public class FirstController implements Initializable {
     @FXML
     private JFXButton btn_client, btn_fournisseurs, btn_fileChoser, btn_empl;
     
+    @FXML
+    private JFXTextField codeProduitField, designationProduitField, prixVenteField, quantiteStockField, marqueProduitField, categorieProduitField;
     
+     @FXML
+    private Label resultatAjoutProduitLabel;
+     
     @FXML
     private AnchorPane anchor_medic, anchor_client ,anchor_emp;
   @FXML
@@ -73,16 +85,16 @@ public class FirstController implements Initializable {
     private AnchorPane anchor_commandes;
     
     @FXML
-    private TableView<Medicament> table_medic;
+    private TableView<Produit> table_medic;
 
     @FXML
-    private TableColumn<Medicament,Number> table_medic_code;
+    private TableColumn<Produit,String> table_medic_code;
 
     @FXML
-    private TableColumn<Medicament, String> table_medic_libelle;
+    private TableColumn<Produit, String> table_medic_libelle;
 
     @FXML
-    private TableColumn<Medicament, String> table_medic_categorie;
+    private TableColumn<Produit, String> table_medic_categorie;
     
     @FXML
     private TableView<Table_Commande> table_alerts;
@@ -106,6 +118,12 @@ public class FirstController implements Initializable {
     private JFXTextField text_vente_code_client;
     @FXML
     private JFXComboBox combobox_emp;
+    
+         @FXML
+    private JFXTextArea remarqueProduitArea;
+
+    @FXML
+    private JFXDatePicker dateExpirationField;
 
     @FXML
     private Hyperlink text_vente_link_client;
@@ -140,17 +158,8 @@ public class FirstController implements Initializable {
         alert_select.setCellFactory(CheckBoxTableCell.forTableColumn(alert_select));
         table_alerts.setEditable(true);
         
-        /*table Medicament dans la rubrique table*/
-        final ObservableList<Medicament> medicaments = FXCollections.observableArrayList(
-                new Medicament(1,"doliprane","blabla"), 
-                new Medicament(2, "Aspijique", "jsp"),
-                new Medicament(3, "Vitamine C", "faissal"));
-        System.out.println(medicaments);
-        table_medic_code.setCellValueFactory(new PropertyValueFactory<>("codeProperty"));
-        table_medic_libelle.setCellValueFactory(new PropertyValueFactory<>("libelleProperty"));
-        table_medic_categorie.setCellValueFactory(new PropertyValueFactory<>("categorieProperty"));
-        
-        table_medic.setItems(medicaments);       
+        updateTableViewProduits();
+ 
 
     toggle_btn_passager.selectedProperty().addListener(new ChangeListener < Boolean >()
         {
@@ -171,6 +180,14 @@ public class FirstController implements Initializable {
     
     
     } 
+    public void updateTableViewProduits(){
+        ProduitService ps = new ProduitService();
+             try {
+                 ps.affichage(table_medic, table_medic_code, table_medic_libelle, table_medic_categorie);
+             } catch (Exception ex) {
+                 Logger.getLogger(FirstController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }
     
    @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -206,6 +223,78 @@ public class FirstController implements Initializable {
        
     
     }
+        private void montrer(Label label, int seconds){
+        label.setVisible(true);
+        PauseTransition visiblePause = new PauseTransition(
+            Duration.seconds(seconds)
+            );
+            visiblePause.setOnFinished(
+            event -> label.setVisible(false)
+                );
+            visiblePause.play();
+    }
+    private boolean validate(String text)
+    {
+        return text.matches("[0-9]*");
+    }
+    @FXML
+    private void saveProduit(ActionEvent e) throws Exception {
+        
+        if(codeProduitField.getText().length()==0|| categorieProduitField.getText().length()==0 ||designationProduitField.getText().length() ==0||prixVenteField.getText().length() ==0||quantiteStockField.getText().length() ==0 ||dateExpirationField.getValue().equals(null)||remarqueProduitArea.getText().length()==0 || marqueProduitField.getText().length()==0){
+         // le message d'erreur pour les champs vides
+
+            resultatAjoutProduitLabel.setStyle("-fx-text-fill : red");
+            resultatAjoutProduitLabel.setText("veuillez remplir tous les champs (*) obligatoire");
+            
+            montrer(resultatAjoutProduitLabel,4);
+        }
+            else{
+             if(validate(prixVenteField.getText())== false || validate(quantiteStockField.getText())== false){
+             System.out.println("entrer un nombre a la place reservé");
+             resultatAjoutProduitLabel.setStyle("-fx-text-fill : red");
+            resultatAjoutProduitLabel.setText("entrer un nombre a la place reservé");
+            montrer(resultatAjoutProduitLabel,4);
+         }
+         else{
+            // ici tous les champs sont remplis
+            Produit produit = new Produit();
+        ProduitDao produitDao = new ProduitDao();
+        String code;
+        code = codeProduitField.getText();
+            if( produitDao.findById(code) != null){
+                   // l'exeption pour l'unicité de la clé primaire code produit
+            resultatAjoutProduitLabel.setStyle("-fx-text-fill : red");
+            resultatAjoutProduitLabel.setText("Le code du produit existe déja");
+            montrer(resultatAjoutProduitLabel,4);
+        
+                    }
+        else{
+        produit.setCategorie(categorieProduitField.getText());
+        produit.setId(code);
+        produit.setMarque(marqueProduitField.getText());
+        produit.setDesignation(designationProduitField.getText());
+        produit.setRemarque(remarqueProduitArea.getText());
+        produit.setDateExp(dateExpirationField.getValue().toString());
+        produit.setPrixVente(Double.parseDouble(prixVenteField.getText()));
+        produit.setQuantiteStock(Integer.parseInt(quantiteStockField.getText()));
+        produitDao.save(produit);
+        codeProduitField.setText("");
+        designationProduitField.setText("");
+          prixVenteField.setText("");
+          quantiteStockField.setText("");
+          marqueProduitField.setText("");
+          remarqueProduitArea.setText("");
+          categorieProduitField.setText("");
+          quantiteStockField.setText("");
+          prixVenteField.setText("");
+          resultatAjoutProduitLabel.setStyle("-fx-text-fill : green");
+          resultatAjoutProduitLabel.setText("Le produit est enregistrer avec succé");
+          montrer(resultatAjoutProduitLabel,3); 
+          updateTableViewProduits();
+        }
+    }} 
+    }   
+
    
    @FXML
    private void handleOnMouseClicked(MouseEvent event) throws MalformedURLException {

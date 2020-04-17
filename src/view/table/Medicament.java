@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Bean;
+package view.table;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,15 +13,25 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Faissal
  */
 public class Medicament {
-         SimpleIntegerProperty codeProperty;
-         SimpleStringProperty libelleProperty;
-         SimpleStringProperty categorieProperty;
+         private String id;
+         private final SimpleIntegerProperty codeProperty;
+         private final  SimpleStringProperty libelleProperty;
+         private final SimpleStringProperty categorieProperty;
 
         public Medicament(Integer codeProperty, String libelleProperty, String categorieProperty) {
             this.codeProperty = new SimpleIntegerProperty(codeProperty);
             this.libelleProperty =new SimpleStringProperty(libelleProperty);
             this.categorieProperty = new SimpleStringProperty(categorieProperty);
         }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+        
 
         public Integer getCodeProperty() {
             return codeProperty.get();

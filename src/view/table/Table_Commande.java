@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Bean;
+package view.table;
 
 import java.awt.Checkbox;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -15,12 +15,22 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Faissal
  */
 public class Table_Commande{
+    private String id;
          private final SimpleIntegerProperty idProperty;
          private final SimpleStringProperty libelleProperty;
          private final SimpleIntegerProperty quantiteProperty;
          private final SimpleBooleanProperty statutProperty;
          private Checkbox select;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+       
     public Table_Commande(Integer id, String libelleProperty, Integer quantiteProperty) {
         this.idProperty = new SimpleIntegerProperty(id);
         this.libelleProperty = new SimpleStringProperty(libelleProperty);
