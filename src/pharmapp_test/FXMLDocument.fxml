@@ -346,11 +346,16 @@
                            <content>
                               <AnchorPane fx:id="pane_medic" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView fx:id="table_medic" layoutX="100.0" layoutY="91.0" prefHeight="331.0" prefWidth="705.0" stylesheets="@../style/TableView.css" AnchorPane.bottomAnchor="178.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="91.0">
+                                    <TableView fx:id="table_produits" layoutX="100.0" layoutY="91.0" prefHeight="331.0" prefWidth="738.0" stylesheets="@../style/TableView.css" AnchorPane.bottomAnchor="178.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="91.0">
                                       <columns>
-                                          <TableColumn fx:id="table_medic_code" prefWidth="200.0" text="Code Produit" />
-                                          <TableColumn fx:id="table_medic_libelle" prefWidth="190.0" text="Libelle" />
-                                          <TableColumn fx:id="table_medic_categorie" prefWidth="177.0" text="Catégorie" />
+                                          <TableColumn fx:id="table_prod_code" prefWidth="113.0" text="Code Produit" />
+                                          <TableColumn fx:id="table_prod_libelle" prefWidth="110.0" text="Libelle" />
+                                          <TableColumn fx:id="table_prod_categorie" prefWidth="100.0" text="Catégorie" />
+                                          <TableColumn fx:id="table_prod_quantite" prefWidth="93.0" text="Quantité " />
+                                          <TableColumn fx:id="table_prod_prix" prefWidth="96.0" text="Prix de vente" />
+                                          <TableColumn fx:id="table_prod_marque" prefWidth="65.0" text="Marque" />
+                                          <TableColumn fx:id="table_prod_dateExp" prefWidth="75.0" text="Date Exp" />
+                                          <TableColumn fx:id="table_prod_remarque" prefWidth="85.0" text="Autres" />
                                       </columns>
                                     </TableView>
                                     <Hyperlink fx:id="modifierSupprimerHyperLink" layoutX="180.0" layoutY="432.0" onAction="#modifierSupprimerHyperLink" text="Modifier ou supprimer le produit que vous aviez selectionnés" />

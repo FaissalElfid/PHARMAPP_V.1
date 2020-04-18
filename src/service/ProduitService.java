@@ -39,7 +39,7 @@ public class ProduitService {
         produitDao.save(prod);
     }
 
-    public void affichage(TableView<Produit> table_medic, TableColumn<Produit,String> table_medic_code, TableColumn<Produit, String> table_medic_libelle, TableColumn<Produit, String> table_medic_categorie) throws Exception{
+    public void affichage(TableView<Produit> table_medic, TableColumn<Produit,String> table_medic_code, TableColumn<Produit, String> table_medic_libelle, TableColumn<Produit, String> table_medic_categorie, TableColumn<Produit, Number> table_prod_prix, TableColumn<Produit, Number> table_prod_quantite, TableColumn<Produit, String> table_prod_marque, TableColumn<Produit, String> table_prod_dateExp, TableColumn<Produit, String> table_prod_remarque) throws Exception{
         
 final ObservableList<Produit> produits = FXCollections.observableArrayList(
                 produitDao.findAll()
@@ -47,7 +47,13 @@ final ObservableList<Produit> produits = FXCollections.observableArrayList(
         System.out.println(produits);
         table_medic_code.setCellValueFactory(new PropertyValueFactory<>("id"));
         table_medic_libelle.setCellValueFactory(new PropertyValueFactory<>("designation"));
+        table_prod_prix.setCellValueFactory(new PropertyValueFactory<>("prixVente"));
+        table_prod_marque.setCellValueFactory(new PropertyValueFactory<>("marque"));
+        table_prod_dateExp.setCellValueFactory(new PropertyValueFactory<>("dateExp"));
+        table_prod_quantite.setCellValueFactory(new PropertyValueFactory<>("quantiteStock"));
+        table_prod_remarque.setCellValueFactory(new PropertyValueFactory<>("remarque"));
         table_medic_categorie.setCellValueFactory(new PropertyValueFactory<>("categorie"));
+        
         
         table_medic.setItems(produits);    
 }

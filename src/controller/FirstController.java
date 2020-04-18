@@ -86,17 +86,32 @@ public class FirstController implements Initializable {
     @FXML
     private AnchorPane anchor_commandes;
     
-    @FXML
-    private TableView<Produit> table_medic;
+     @FXML
+    private TableView<Produit> table_produits;
 
     @FXML
-    private TableColumn<Produit,String> table_medic_code;
+    private TableColumn<Produit, String> table_prod_code;
 
     @FXML
-    private TableColumn<Produit, String> table_medic_libelle;
+    private TableColumn<Produit, String> table_prod_libelle;
 
     @FXML
-    private TableColumn<Produit, String> table_medic_categorie;
+    private TableColumn<Produit, String> table_prod_categorie;
+
+    @FXML
+    private TableColumn<Produit, Number> table_prod_prix;
+    
+        @FXML
+    private TableColumn<Produit, Number> table_prod_quantite;
+
+    @FXML
+    private TableColumn<Produit, String> table_prod_marque;
+
+    @FXML
+    private TableColumn<Produit, String> table_prod_dateExp;
+
+    @FXML
+    private TableColumn<Produit, String> table_prod_remarque;
     
     @FXML
     private TableView<Table_Commande> table_alerts;
@@ -214,7 +229,7 @@ public class FirstController implements Initializable {
     public void updateTableViewProduits(){
         ProduitService ps = new ProduitService();
              try {
-                 ps.affichage(table_medic, table_medic_code, table_medic_libelle, table_medic_categorie);
+                 ps.affichage(table_produits, table_prod_code, table_prod_libelle, table_prod_categorie, table_prod_prix, table_prod_quantite, table_prod_marque, table_prod_dateExp, table_prod_remarque);
              } catch (Exception ex) {
                  Logger.getLogger(FirstController.class.getName()).log(Level.SEVERE, null, ex);
              }
@@ -345,8 +360,8 @@ public class FirstController implements Initializable {
     @FXML
     void modifierSupprimerHyperLink(ActionEvent event) {
 
-        findCodeProduit.setText(table_medic.getSelectionModel().getSelectedItem().getId());
-        findDesignation.setText(table_medic.getSelectionModel().getSelectedItem().getDesignation());
+        findCodeProduit.setText(table_produits.getSelectionModel().getSelectedItem().getId());
+        findDesignation.setText(table_produits.getSelectionModel().getSelectedItem().getDesignation());
         tabpane_medicament.getSelectionModel().select(tabMedicamentModifier);
         // modifierHomeAnchorPane.toFront();
     } 
