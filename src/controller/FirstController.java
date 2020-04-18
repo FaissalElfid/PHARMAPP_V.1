@@ -30,6 +30,7 @@ import view.table.Medicament;
 import view.table.Table_Commande;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
@@ -41,6 +42,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -129,6 +131,34 @@ public class FirstController implements Initializable {
     private Hyperlink text_vente_link_client;
      private String imageFile;
      
+     /*nouveaux*/
+     @FXML
+    private AnchorPane modifierAnchorPane;
+
+    @FXML
+    private Label codeProduitModifier;
+
+    @FXML
+    private JFXDatePicker dateExpirationModifierField;
+
+    @FXML
+    private JFXTextField designationProduitModifierField, quantiteStockModifierField, marqueProduitModifierField, categorieProduitModifierField, prixVenteModifierField;
+
+    @FXML
+    private JFXTextArea remarqueProduitModifierArea;
+    
+    @FXML
+    private JFXTextField findCodeProduit, findDesignation;
+
+    @FXML
+    private AnchorPane modifierHomeAnchorPane;
+    
+    @FXML
+    private JFXTabPane tabpane_medicament;
+     @FXML
+    private Tab tabMedicamentModifier;
+     
+     
      ObservableList<String> emploi = FXCollections.observableArrayList("Gérant","Vendeur","Administrateur","Pharmacien");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -137,6 +167,7 @@ public class FirstController implements Initializable {
                  
         //ajoute des emploi dans combobox
         combobox_emp.setItems(emploi);
+        modifierHomeAnchorPane.toFront();
         
         /*table medicament dans alert commande*/
         final ObservableList<Table_Commande> alerts = FXCollections.observableArrayList(
@@ -223,6 +254,7 @@ public class FirstController implements Initializable {
        
     
     }
+    /* cette fonction est util pour ajouter un label pour un lapse de temps*/
         private void montrer(Label label, int seconds){
         label.setVisible(true);
         PauseTransition visiblePause = new PauseTransition(
@@ -293,7 +325,7 @@ public class FirstController implements Initializable {
           updateTableViewProduits();
         }
     }} 
-    }   
+    }
 
    
    @FXML
@@ -310,14 +342,78 @@ public class FirstController implements Initializable {
 
         } 
     }
-		   
-	   
-	   
-	   
-  
-//@Override
-//    public void initialize(URL url, ResourceBundle rb) {
-//    }
+    @FXML
+    void modifierSupprimerHyperLink(ActionEvent event) {
+
+        findCodeProduit.setText(table_medic.getSelectionModel().getSelectedItem().getId());
+        findDesignation.setText(table_medic.getSelectionModel().getSelectedItem().getDesignation());
+        tabpane_medicament.getSelectionModel().select(tabMedicamentModifier);
+        // modifierHomeAnchorPane.toFront();
+    } 
+    @FXML
+    void modifierSelected(ActionEvent event) {
+        modifierHomeAnchorPane.toFront();
+    }
+
+    @FXML
+    void deleteFindProduit(ActionEvent event) throws Exception {
+        ProduitDao produitDao = new ProduitDao();
+        Produit produit = new Produit();
+        produit = produitDao.findById(findCodeProduit.getText());
+        if(produit == null){
+            System.out.println("le code produit que vous demander est introuvable");
+        }
+        else{
+            produitDao.delete(produit);
+            updateTableViewProduits();
+        }
+    }
+
+    @FXML
+    void modifierFindProduit(ActionEvent event) throws Exception {//modifierFindProduit
+        ProduitDao produitDao = new ProduitDao();
+        Produit produit = new Produit();
+        produit = produitDao.findById(findCodeProduit.getText());
+        if(produit == null){
+            System.out.println("le code produit que vous demander est introuvable");
+        }
+        else{
+        modifierAnchorPane.toFront();
+        designationProduitModifierField.setText(produit.getDesignation());
+        quantiteStockModifierField.setText(""+produit.getQuantiteStock());
+        marqueProduitModifierField.setText(produit.getMarque());
+        categorieProduitModifierField.setText(produit.getCategorie());
+        prixVenteModifierField.setText(""+produit.getPrixVente());
+        codeProduitModifier.setText(produit.getId());
+        remarqueProduitModifierArea.setText(produit.getRemarque());
+        
+        }
+    }
+    @FXML
+    void updateFindProduit(ActionEvent event) throws Exception {//modifierFindProduit
+        ProduitDao produitDao = new ProduitDao();
+        Produit produit = new Produit();
+        produit = produitDao.findById(findCodeProduit.getText());
+        if(produit == null){
+            System.out.println("le code produit que vous demander est introuvable");
+        }
+        else{
+        produit.setDesignation(designationProduitModifierField.getText());
+        produit.setMarque(marqueProduitModifierField.getText());
+        produit.setCategorie(categorieProduitModifierField.getText());
+        produitDao.update(produit);
+        updateTableViewProduits();
+        PauseTransition visiblePause = new PauseTransition(
+            Duration.seconds(3)
+            );
+            visiblePause.setOnFinished(
+            e -> modifierHomeAnchorPane.toFront()
+                );
+            visiblePause.play();
+        
+        }
+    }
+    
     
      
     

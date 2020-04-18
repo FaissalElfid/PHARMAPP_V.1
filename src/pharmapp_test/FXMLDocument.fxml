@@ -44,7 +44,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_menu_medicament" alignment="BASELINE_LEFT" graphicTextGap="42.0" layoutX="-1.0" layoutY="375.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="240.0" text="Médicaments" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <JFXButton fx:id="btn_menu_medicament" alignment="BASELINE_LEFT" graphicTextGap="42.0" layoutX="-1.0" layoutY="375.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="240.0" text="Produits" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -190,45 +190,6 @@
                   </Label>
                </children>
             </Pane>
-            <AnchorPane fx:id="anchor_commandes" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <JFXTabPane fx:id="pnl_commande" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <tabs>
-                        <Tab text="Alerts">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <TableView fx:id="table_alerts" layoutX="151.0" layoutY="81.0" prefHeight="340.0" prefWidth="737.0" stylesheets="@../style/TableView.css">
-                                       <columns>
-                                          <TableColumn fx:id="alert_id_produit" prefWidth="162.0" text="Code Produit" />
-                                          <TableColumn fx:id="alert_libelle_produit" prefWidth="298.0" text="Libelle" />
-                                          <TableColumn fx:id="alert_quantite" prefWidth="127.0" text="Quantité restante" />
-                                          <TableColumn fx:id="alert_select" text="Selectionnée" />
-                                       </columns>
-                                    </TableView>
-                                    <JFXButton layoutX="793.0" layoutY="451.0" prefHeight="51.0" prefWidth="104.0" style="-fx-background-color: #009688; -fx-border-radius: 5px;" text="Commander" textFill="WHITE">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </JFXButton>
-                                    <JFXButton layoutX="668.0" layoutY="451.0" prefHeight="51.0" prefWidth="104.0" style="-fx-background-color: #E0E0E0;" text="Annuler" textFill="#009688" />
-                                    <Label layoutX="291.0" layoutY="28.0" prefHeight="35.0" prefWidth="377.0" text="Les produits en rupture de stock" underline="true">
-                                       <font>
-                                          <Font name="System Bold Italic" size="24.0" />
-                                       </font></Label>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </Tab>
-                        <Tab closable="false" text="Commandes en cours">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                          </content>
-                        </Tab>
-                     </tabs>
-                  </JFXTabPane>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="anchor_client" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTabPane fx:id="tab_pane_client" prefHeight="563.0" prefWidth="458.0" rotateGraphic="true" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -266,81 +227,6 @@
                                     </Label>
                                  </children></AnchorPane>
                           </content>
-                        </Tab>
-                     </tabs>
-                  </JFXTabPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="anchor_medic" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <JFXTabPane fx:id="tabpane_medicament" prefHeight="600.0" prefWidth="958.0" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <tabs>
-                        <Tab fx:id="tabpane_tab_medicament" text="Médicaments">
-                           <content>
-                              <AnchorPane fx:id="pane_medic" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <TableView fx:id="table_medic" layoutX="100.0" layoutY="91.0" prefHeight="396.0" prefWidth="712.0" stylesheets="@../style/TableView.css" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="91.0">
-                                      <columns>
-                                          <TableColumn fx:id="table_medic_code" prefWidth="200.0" text="Code Médicaments" />
-                                          <TableColumn fx:id="table_medic_libelle" prefWidth="190.0" text="Libelle" />
-                                          <TableColumn fx:id="table_medic_categorie" prefWidth="177.0" text="Catégorie" />
-                                      </columns>
-                                    </TableView>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab text="Ajouter">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <JFXTextField fx:id="codeProduitField" layoutX="227.0" layoutY="110.0" prefHeight="44.0" prefWidth="249.0" promptText="Code médicament">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </JFXTextField>
-                                    <Label layoutX="23.0" layoutY="51.0" prefHeight="28.0" prefWidth="406.0" text="Veuillez entrer les données concernant le produit :">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <JFXTextField fx:id="designationProduitField" layoutX="225.0" layoutY="195.0" prefHeight="35.0" prefWidth="252.0" promptText="Désignation">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </JFXTextField>
-                                    <JFXTextField fx:id="prixVenteField" layoutX="226.0" layoutY="288.0" promptText="Prix de vente">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </JFXTextField>
-                                    <JFXDatePicker fx:id="dateExpirationField" layoutX="586.0" layoutY="114.0" prefHeight="35.0" prefWidth="260.0" promptText="Date d'éxpiration" />
-                                    <JFXTextField fx:id="quantiteStockField" layoutX="586.0" layoutY="200.0" prefHeight="36.0" prefWidth="243.0" promptText="Quantité en stock">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </JFXTextField>
-                                    <JFXTextArea fx:id="remarqueProduitArea" layoutX="226.0" layoutY="434.0" prefHeight="110.0" prefWidth="352.0" promptText="Informations supplémentaire" />
-                                    <JFXButton buttonType="RAISED" defaultButton="true" layoutX="716.0" layoutY="434.0" onAction="#saveProduit" prefHeight="63.0" prefWidth="140.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Ajouter" textFill="WHITE" />
-                                    <JFXTextField fx:id="marqueProduitField" layoutX="583.0" layoutY="288.0" prefHeight="25.0" prefWidth="249.0" promptText="Marque">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </JFXTextField>
-                                    <JFXTextField fx:id="categorieProduitField" layoutX="225.0" layoutY="368.0" promptText="Catégorie">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </JFXTextField>
-                                    <Label fx:id="resultatAjoutProduitLabel" layoutX="689.0" layoutY="408.0" prefHeight="19.0" prefWidth="27.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                        <Tab text="Modifier">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                           </content>
                         </Tab>
                      </tabs>
                   </JFXTabPane>
@@ -409,6 +295,188 @@
                                  </children>
                               </AnchorPane>
                            </content></Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchor_commandes" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTabPane fx:id="pnl_commande" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab text="Alerts">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="table_alerts" layoutX="151.0" layoutY="81.0" prefHeight="340.0" prefWidth="737.0" stylesheets="@../style/TableView.css">
+                                       <columns>
+                                          <TableColumn fx:id="alert_id_produit" prefWidth="162.0" text="Code Produit" />
+                                          <TableColumn fx:id="alert_libelle_produit" prefWidth="298.0" text="Libelle" />
+                                          <TableColumn fx:id="alert_quantite" prefWidth="127.0" text="Quantité restante" />
+                                          <TableColumn fx:id="alert_select" text="Selectionnée" />
+                                       </columns>
+                                    </TableView>
+                                    <JFXButton layoutX="793.0" layoutY="451.0" prefHeight="51.0" prefWidth="104.0" style="-fx-background-color: #009688; -fx-border-radius: 5px;" text="Commander" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton layoutX="668.0" layoutY="451.0" prefHeight="51.0" prefWidth="104.0" style="-fx-background-color: #E0E0E0;" text="Annuler" textFill="#009688" />
+                                    <Label layoutX="291.0" layoutY="28.0" prefHeight="35.0" prefWidth="377.0" text="Les produits en rupture de stock" underline="true">
+                                       <font>
+                                          <Font name="System Bold Italic" size="24.0" />
+                                       </font></Label>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab closable="false" text="Commandes en cours">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          </content>
+                        </Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchor_medic" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTabPane fx:id="tabpane_medicament" prefHeight="600.0" prefWidth="958.0" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab fx:id="tabpane_tab_medicament" text="Produits">
+                           <content>
+                              <AnchorPane fx:id="pane_medic" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="table_medic" layoutX="100.0" layoutY="91.0" prefHeight="331.0" prefWidth="705.0" stylesheets="@../style/TableView.css" AnchorPane.bottomAnchor="178.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="91.0">
+                                      <columns>
+                                          <TableColumn fx:id="table_medic_code" prefWidth="200.0" text="Code Produit" />
+                                          <TableColumn fx:id="table_medic_libelle" prefWidth="190.0" text="Libelle" />
+                                          <TableColumn fx:id="table_medic_categorie" prefWidth="177.0" text="Catégorie" />
+                                      </columns>
+                                    </TableView>
+                                    <Hyperlink fx:id="modifierSupprimerHyperLink" layoutX="180.0" layoutY="432.0" onAction="#modifierSupprimerHyperLink" text="Modifier ou supprimer le produit que vous aviez selectionnés" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Ajouter">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXTextField fx:id="codeProduitField" layoutX="227.0" layoutY="110.0" prefHeight="44.0" prefWidth="249.0" promptText="Code médicament">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <Label layoutX="23.0" layoutY="51.0" prefHeight="28.0" prefWidth="406.0" text="Veuillez entrer les données concernant le produit :">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField fx:id="designationProduitField" layoutX="225.0" layoutY="195.0" prefHeight="35.0" prefWidth="252.0" promptText="Désignation">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="prixVenteField" layoutX="226.0" layoutY="288.0" promptText="Prix de vente">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXDatePicker fx:id="dateExpirationField" layoutX="586.0" layoutY="114.0" prefHeight="35.0" prefWidth="260.0" promptText="Date d'éxpiration" />
+                                    <JFXTextField fx:id="quantiteStockField" layoutX="586.0" layoutY="200.0" prefHeight="36.0" prefWidth="243.0" promptText="Quantité en stock">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextArea fx:id="remarqueProduitArea" layoutX="226.0" layoutY="434.0" prefHeight="110.0" prefWidth="352.0" promptText="Informations supplémentaire" />
+                                    <JFXButton buttonType="RAISED" defaultButton="true" layoutX="716.0" layoutY="434.0" onAction="#saveProduit" prefHeight="63.0" prefWidth="140.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Ajouter" textFill="WHITE" />
+                                    <JFXTextField fx:id="marqueProduitField" layoutX="583.0" layoutY="288.0" prefHeight="25.0" prefWidth="249.0" promptText="Marque">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="categorieProduitField" layoutX="225.0" layoutY="368.0" promptText="Catégorie">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <Label fx:id="resultatAjoutProduitLabel" layoutX="689.0" layoutY="408.0" prefHeight="19.0" prefWidth="27.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab fx:id="tabMedicamentModifier" onSelectionChanged="#modifierSelected" text="Modifier">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <AnchorPane fx:id="modifierAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F3F3F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label layoutX="182.0" layoutY="96.0" text="Vous avez choisie le produits dont le code produit est ">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="codeProduitModifier" layoutX="527.0" layoutY="96.0" prefHeight="20.0" prefWidth="123.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXDatePicker fx:id="dateExpirationModifierField" layoutX="570.0" layoutY="177.0" prefHeight="35.0" prefWidth="260.0" promptText="Date d'éxpiration" />
+                                          <JFXTextField fx:id="designationProduitModifierField" layoutX="224.0" layoutY="177.0" prefHeight="35.0" prefWidth="252.0" promptText="Désignation">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="quantiteStockModifierField" layoutX="570.0" layoutY="267.0" prefHeight="36.0" prefWidth="243.0" promptText="Quantité en stock">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="marqueProduitModifierField" layoutX="226.0" layoutY="270.0" prefHeight="25.0" prefWidth="249.0" promptText="Marque">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="categorieProduitModifierField" layoutX="570.0" layoutY="367.0" promptText="Catégorie">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="prixVenteModifierField" layoutX="226.0" layoutY="367.0" promptText="Prix de vente">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <JFXTextArea fx:id="remarqueProduitModifierArea" layoutX="226.0" layoutY="436.0" prefHeight="110.0" prefWidth="352.0" promptText="Informations supplémentaire" />
+                                          <JFXButton buttonType="RAISED" defaultButton="true" layoutX="682.0" layoutY="462.0" onAction="#updateFindProduit" prefHeight="63.0" prefWidth="140.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Modifier" textFill="WHITE" />
+                                       </children></AnchorPane>
+                                    <AnchorPane fx:id="modifierHomeAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F3F3F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <AnchorPane layoutX="298.0" layoutY="138.0" prefHeight="352.0" prefWidth="380.0" style="-fx-border-color: #043D68; -fx-border-width: 2px; -fx-border-radius: 10px; -fx-background-color: white;" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="298.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="138.0">
+                                             <children>
+                                                <Label layoutX="54.0" layoutY="69.0" prefHeight="25.0" prefWidth="301.0" text="     que vous voulez supprimer ou modifier :" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="27.0">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font></Label>
+                                                <JFXTextField fx:id="findCodeProduit" layoutX="100.0" layoutY="115.0" prefHeight="32.0" prefWidth="191.0" promptText="Code Produit" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="89.0" />
+                                                <JFXButton buttonType="RAISED" defaultButton="true" layoutX="213.0" layoutY="258.0" onAction="#modifierFindProduit" prefHeight="51.0" prefWidth="124.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Modifier" textFill="WHITE" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="35.0" />
+                                                <Label layoutX="13.0" layoutY="41.0" prefHeight="28.0" prefWidth="358.0" text="Entrer le nombre de Code Produit ou le libelle du produit" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font></Label>
+                                                <JFXTextField fx:id="findDesignation" layoutX="95.0" layoutY="176.0" prefHeight="30.0" prefWidth="194.0" promptText="Désignation" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="94.0">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </JFXTextField>
+                                                <JFXButton buttonType="RAISED" defaultButton="true" layoutX="66.0" layoutY="258.0" onAction="#deleteFindProduit" prefHeight="51.0" prefWidth="124.0" ripplerFill="BLACK" style="-fx-background-color: #E81123;" text="Supprimer" textFill="WHITE" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </children></AnchorPane>
+                           </content>
+                        </Tab>
                      </tabs>
                   </JFXTabPane>
                </children>
