@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="528.0" prefWidth="494.0" style="-fx-background-color: white;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormulaireClientController">
+   
+   <children>
+      <Label layoutX="191.0" layoutY="33.0" prefHeight="27.0" prefWidth="194.0" text="Ajouter un client ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField layoutX="154.0" layoutY="96.0" prefHeight="25.0" prefWidth="222.0" promptText="Nom " AnchorPane.leftAnchor="145.0" />
+      <JFXTextField layoutX="154.0" layoutY="146.0" prefHeight="25.0" prefWidth="222.0" promptText="Prénom" AnchorPane.leftAnchor="145.0" />
+      <JFXTextField layoutX="154.0" layoutY="201.0" prefHeight="25.0" prefWidth="222.0" promptText="CIN" AnchorPane.leftAnchor="145.0" />
+      <JFXTextField layoutX="161.0" layoutY="308.0" prefHeight="25.0" prefWidth="222.0" promptText="Télephone" AnchorPane.leftAnchor="145.0" />
+      <JFXDatePicker layoutX="158.0" layoutY="253.0" prefHeight="25.0" prefWidth="224.0" promptText="Date de naissance" AnchorPane.leftAnchor="145.0" />
+      <JFXButton fx:id="btn_saveClient" buttonType="RAISED" layoutX="157.0" layoutY="436.0"  prefHeight="30.0" prefWidth="222.0" style="-fx-background-color: #009688;" text="Ajouter" textFill="WHITE" AnchorPane.leftAnchor="145.0" />
+      <JFXTextField layoutX="157.0" layoutY="361.0" prefHeight="25.0" prefWidth="222.0" promptText="Adresse" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="145.0" />
+   </children>
+</AnchorPane>

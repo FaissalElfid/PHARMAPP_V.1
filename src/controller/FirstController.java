@@ -40,6 +40,8 @@ import java.net.MalformedURLException;
 import javafx.animation.PauseTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -52,6 +54,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import service.ProduitService;
+
 
 /**
  * FXML Controller class
@@ -80,7 +83,7 @@ public class FirstController implements Initializable {
     private Label resultatAjoutProduitLabel;
      
     @FXML
-    private AnchorPane anchor_medic, anchor_client ,anchor_emp;
+    private AnchorPane anchor_medic, anchor_client ,anchor_emp,pane_emp;
   @FXML
   private Circle img_emp;
     @FXML
@@ -127,6 +130,8 @@ public class FirstController implements Initializable {
 
     @FXML
     private TableColumn<Table_Commande, Boolean> alert_select;
+  
+
 
     @FXML
     private JFXToggleButton toggle_btn_passager;
@@ -163,7 +168,7 @@ public class FirstController implements Initializable {
     private JFXTextArea remarqueProduitModifierArea;
     
     @FXML
-    private JFXTextField findCodeProduit, findDesignation;
+    private JFXTextField findCodeProduit, findDesignation ,nom_emp,prenom_emp,adresse_emp;
 
     @FXML
     private AnchorPane modifierHomeAnchorPane;
@@ -174,15 +179,21 @@ public class FirstController implements Initializable {
     private Tab tabMedicamentModifier;
      
      
-     ObservableList<String> emploi = FXCollections.observableArrayList("Gérant","Vendeur","Administrateur","Pharmacien");
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          Image image = new Image("/images/cravata.jpg");
          img_emp.setFill(new ImagePattern(image));
                  
         //ajoute des emploi dans combobox
+         ObservableList<String> emploi = FXCollections.observableArrayList("Gérant","Vendeur","Administrateur","Pharmacien");
         combobox_emp.setItems(emploi);
+        //link n'existe pas aud debut 
+         text_vente_link_client.setVisible(false);
         modifierHomeAnchorPane.toFront();
+        /*table employe
+        
+        */
         
         /*table medicament dans alert commande*/
         final ObservableList<Table_Commande> alerts = FXCollections.observableArrayList(
@@ -194,7 +205,7 @@ public class FirstController implements Initializable {
         new Table_Commande(25,"DIETAZ, Solution buvable",2),   
         new Table_Commande(115,"ETOPOSIDE COOPER 50 MG, Capsule, Boite 4",01)   
         );
-        System.out.println(alerts);
+      
         table_alerts.setItems(alerts);
         alert_id_produit.setCellValueFactory(new PropertyValueFactory<>("idProperty"));
         alert_libelle_produit.setCellValueFactory(new PropertyValueFactory<>("libelleProperty"));
@@ -219,7 +230,7 @@ public class FirstController implements Initializable {
          else{
              toggle_btn_passager.setText("Endettement client");
              text_vente_code_client.setVisible(true);
-             text_vente_link_client.setVisible(true);
+         
          }
         }
         });
@@ -357,6 +368,53 @@ public class FirstController implements Initializable {
 
         } 
     }
+   // cette fonction sert a afficher les alerts dans le cas d'existance des clietns ou non 
+     @FXML
+           private void  testClient(ActionEvent event){
+                text_vente_link_client.setVisible(false);
+             //client n'existe pas
+               if(text_vente_code_client.getText().toString().equalsIgnoreCase("aicha")){
+                    
+                   Alert a = new Alert(AlertType.NONE); 
+                // set alert type 
+                a.setAlertType(AlertType.WARNING); 
+                    // show the dialog 
+                    a.setContentText("le client n'existe pas ");
+                a.show();
+                 text_vente_link_client.setVisible(true);
+                
+            } 
+               
+               //client existe
+               else{
+                     
+                   Alert a = new Alert(AlertType.NONE); 
+                // set alert type 
+                a.setAlertType(AlertType.CONFIRMATION); 
+                    // show the dialog 
+                    a.setContentText("la commande est valider ");
+                a.show();
+        } 
+    
+           } 
+           
+           //cette fonction permet d'afficher la fromulaire du client 
+            @FXML
+           private void  ajoutClient(ActionEvent event) throws IOException{
+               
+               FXMLLoader fxmlLoader = new  FXMLLoader(getClass().getResource("/pharmapp_test/formulaireClient.fxml"));
+               Parent root1=(Parent)fxmlLoader.load();
+               Stage stage=new Stage();
+              stage.setTitle("ajouter un client");
+              stage.setScene(new Scene(root1));
+              stage.show(); 
+              
+           }
+	 @FXML
+          private void ajoutEmploye(ActionEvent event){
+            
+          }
+   
     @FXML
     void modifierSupprimerHyperLink(ActionEvent event) {
 

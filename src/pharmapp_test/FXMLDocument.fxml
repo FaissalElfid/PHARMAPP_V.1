@@ -26,7 +26,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="663.0" prefWidth="700.0" style="-fx-min-height: 400; -fx-max-height: 800; -fx-pref-height: 650; -fx-pref-width: 1200; -fx-min-width: 300; -fx-max-width: 1500;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FirstController">
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="663.0" prefWidth="700.0" style="-fx-min-height: 400; -fx-max-height: 800; -fx-pref-height: 650; -fx-pref-width: 1200; -fx-min-width: 300; -fx-max-width: 1500;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FirstController">
    <children>
       <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="430.0" prefWidth="213.0" style="-fx-background-color: #F2F5F7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -44,7 +44,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_menu_medicament" alignment="BASELINE_LEFT" graphicTextGap="42.0" layoutX="-1.0" layoutY="375.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="240.0" text="Produits" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <JFXButton fx:id="bmenu_medicament" alignment="BASELINE_LEFT" graphicTextGap="42.0" layoutX="-1.0" layoutY="375.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="240.0" text="Produits" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -140,7 +140,7 @@
                   </TableView>
                   <JFXTextField fx:id="text_vente_code_client" layoutX="118.0" layoutY="477.0" prefHeight="35.0" prefWidth="191.0" promptText="Code client" />
                   <JFXToggleButton fx:id="toggle_btn_passager" layoutX="61.0" layoutY="420.0" prefHeight="58.0" prefWidth="231.0" text="Client passager" />
-                  <Hyperlink fx:id="text_vente_link_client" layoutX="167.0" layoutY="524.0" text="Ajouter client">
+                  <Hyperlink fx:id="text_vente_link_client" layoutX="167.0" layoutY="524.0" onAction="#ajoutClient" text="Ajouter client">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -155,7 +155,7 @@
                         <Font size="32.0" />
                      </font>
                   </Label>
-                  <JFXButton buttonType="RAISED" defaultButton="true" layoutX="732.0" layoutY="524.0" prefHeight="47.0" prefWidth="104.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Valider" textFill="WHITE" />
+                  <JFXButton fx:id="btn_valider_Vente" buttonType="RAISED" defaultButton="true" layoutX="732.0" layoutY="524.0" onAction="#testClient" prefHeight="47.0" prefWidth="104.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Valider" textFill="WHITE" />
                   <JFXButton buttonType="RAISED" defaultButton="true" layoutX="579.0" layoutY="524.0" prefHeight="47.0" prefWidth="113.0" ripplerFill="BLACK" style="-fx-background-color: #E0E0E0;" text="Annuler" textFill="#009688" />
                   <JFXTextField layoutX="412.0" layoutY="432.0" prefHeight="35.0" prefWidth="191.0" promptText="Montant payé" />
                </children>
@@ -190,115 +190,6 @@
                   </Label>
                </children>
             </Pane>
-            <AnchorPane fx:id="anchor_client" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <JFXTabPane fx:id="tab_pane_client" prefHeight="563.0" prefWidth="458.0" rotateGraphic="true" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <tabs>
-                        <Tab text="Clients">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="486.0" />
-                          </content>
-                        </Tab>
-                        <Tab text="Ajouter">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <Label layoutX="194.0" layoutY="142.0" text="Nom* :" AnchorPane.leftAnchor="194.0" AnchorPane.topAnchor="146.0" />
-                                    <Label layoutX="667.0" layoutY="146.0" text="Prénom* :" AnchorPane.leftAnchor="660.0" AnchorPane.topAnchor="146.0" />
-                                    <Label layoutX="187.0" layoutY="314.0" text="Adresse* :" AnchorPane.topAnchor="320.0" />
-                                    <Label layoutX="198.0" layoutY="206.0" text="CIN* :" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="205.0" />
-                                    <Label layoutX="613.0" layoutY="193.0" prefHeight="25.0" prefWidth="107.0" text="Date de naissance* :" AnchorPane.topAnchor="200.0" />
-                                    <Label layoutX="180.0" layoutY="258.0" text="Télephone* :" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="258.0" />
-                                    <JFXTextField layoutX="258.0" layoutY="130.0" prefHeight="25.0" prefWidth="270.0" AnchorPane.leftAnchor="258.0" AnchorPane.topAnchor="130.0" />
-                                    <JFXTextField layoutX="258.0" layoutY="189.0" prefHeight="25.0" prefWidth="270.0" AnchorPane.leftAnchor="258.0" AnchorPane.topAnchor="189.0" />
-                                    <JFXDatePicker layoutX="731.0" layoutY="189.0" prefHeight="25.0" prefWidth="271.0" AnchorPane.leftAnchor="731.0" AnchorPane.topAnchor="189.0" />
-                                    <JFXTextField layoutX="258.0" layoutY="310.0" prefHeight="25.0" prefWidth="270.0" AnchorPane.topAnchor="307.0" />
-                                    <JFXButton defaultButton="true" layoutX="763.0" layoutY="387.0" prefHeight="50.0" prefWidth="104.0" style="-fx-background-color: #009688;" text="Ajouter" textFill="WHITE">
-                                       <font>
-                                          <Font size="13.0" />
-                                       </font>
-                                    </JFXButton>
-                                    <JFXTextField layoutX="259.0" layoutY="240.0" prefHeight="25.0" prefWidth="269.0" AnchorPane.leftAnchor="259.0" AnchorPane.topAnchor="245.0" />
-                                    <JFXTextField layoutX="749.0" layoutY="147.0" prefHeight="25.0" prefWidth="269.0" AnchorPane.leftAnchor="732.0" AnchorPane.topAnchor="130.0" />
-                                    <Label layoutX="44.0" layoutY="69.0" prefHeight="28.0" prefWidth="368.0" text="Veuillez entrer les informations des clients :">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children></AnchorPane>
-                          </content>
-                        </Tab>
-                     </tabs>
-                  </JFXTabPane>
-               </children>
-            </AnchorPane>
-              <AnchorPane fx:id="anchor_emp" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <JFXTabPane fx:id="tabpann_emp" layoutX="26.0" layoutY="36.0" prefHeight="600.0" prefWidth="958.0" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <tabs>
-                        <Tab fx:id="tabpane_tab_emp" text="Les employés">
-                           <content>
-                              <AnchorPane fx:id="pane_emp" prefHeight="200.0" prefWidth="200.0" />
-                           </content></Tab>
-                        <Tab fx:id="tabpane_tab_ajouter" text="Ajouter">
-                           <content>
-                              <AnchorPane fx:id="pane_ajouter" prefHeight="640.0" prefWidth="958.0">
-                                 <children>
-                                    <JFXTextField layoutX="329.0" layoutY="201.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="201.0" />
-                                    <JFXTextField layoutX="329.0" layoutY="265.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="265.0" />
-                                    <Label layoutX="329.0" layoutY="184.0" prefHeight="17.0" prefWidth="50.0" text="Nom* :" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="184.0" />
-                                    <Label layoutX="683.0" layoutY="184.0" text="Prénom* : " AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="184.0" />
-                                    <Label layoutX="686.0" layoutY="248.0" text="Date de naissance* :" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="248.0" />
-                                    <Label layoutX="327.0" layoutY="314.0" prefHeight="17.0" prefWidth="42.0" text="Email :" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="314.0" />
-                                    <Label layoutX="686.0" layoutY="314.0" text="Télephone* :" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="314.0" />
-                                    <Label layoutX="324.0" layoutY="446.0" text="Adresse :" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="446.0" />
-                                    <Label layoutX="329.0" layoutY="390.0" prefHeight="17.0" prefWidth="57.0" text="RIB* : " AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="390.0" />
-                                    <Label layoutX="329.0" layoutY="257.0" prefHeight="17.0" prefWidth="38.0" text="CIN*:" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="257.0" />
-                                    <JFXTextField layoutX="329.0" layoutY="330.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="330.0" />
-                                    <JFXTextField layoutX="622.0" layoutY="201.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="201.0" />
-                                    <JFXTextField layoutX="329.0" layoutY="395.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="395.0" />
-                                    <JFXTextField layoutX="683.0" layoutY="330.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="330.0" />
-                                    <JFXButton fx:id="btn_ajout_emp" layoutX="625.0" layoutY="538.0" prefHeight="47.0" prefWidth="135.0" style="-fx-background-color:#009688;" text="Ajouter" textFill="WHITE">
-                                       <textFill>
-                                          <LinearGradient endX="1.0" endY="1.0">
-                                             <stops>
-                                                <Stop color="BLACK" />
-                                                <Stop color="WHITE" offset="1.0" />
-                                             </stops>
-                                          </LinearGradient>
-                                       </textFill>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </JFXButton>
-                                    <Label layoutX="329.0" layoutY="545.0" text="Les champs (*) sont obligatoire." />
-                                    <JFXDatePicker layoutX="624.0" layoutY="265.0" prefHeight="25.0" prefWidth="225.0" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="265.0" />
-                                    <JFXTextField layoutX="329.0" layoutY="467.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="467.0" />
-                                    <JFXRadioButton layoutX="684.0" layoutY="407.0" text="Homme" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="407.0" />
-                                    <JFXRadioButton layoutX="735.0" layoutY="407.0" text="Femme" AnchorPane.leftAnchor="735.0" AnchorPane.topAnchor="407.0" />
-                                    <Label layoutX="679.0" layoutY="378.0" text="Sexe* :" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="378.0" />
-                                    <JFXComboBox fx:id="combobox_emp" layoutX="626.0" layoutY="467.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="626.0" AnchorPane.topAnchor="467.0" />
-                                    <Label layoutX="629.0" layoutY="446.0" text="Emploi :" AnchorPane.leftAnchor="629.0" AnchorPane.topAnchor="446.0" />
-                                    <Label layoutX="195.0" layoutY="398.0" />
-                                    <Circle fx:id="img_emp" layoutX="556.0" layoutY="91.0" onMouseClicked="#handleOnMouseClicked" radius="75.0" smooth="false" stroke="#009688" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeWidth="4.0" AnchorPane.topAnchor="20.0">
-                                       <fill>
-                                          <LinearGradient endX="0.014285714285714285" endY="1.0" startY="1.0">
-                                             <stops>
-                                                <Stop color="BLACK" />
-                                                <Stop color="WHITE" offset="0.8831615120274914" />
-                                                <Stop color="WHITE" offset="0.9347079037800686" />
-                                                <Stop color="WHITE" offset="1.0" />
-                                             </stops>
-                                          </LinearGradient>
-                                       </fill>
-                                    </Circle>
-                                 </children>
-                              </AnchorPane>
-                           </content></Tab>
-                     </tabs>
-                  </JFXTabPane>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="anchor_commandes" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTabPane fx:id="pnl_commande" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -482,6 +373,133 @@
                                  </children></AnchorPane>
                            </content>
                         </Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchor_client" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTabPane fx:id="tab_pane_client" prefHeight="563.0" prefWidth="458.0" rotateGraphic="true" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab text="Clients">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="486.0">
+                                 <children>
+                                    <TableView fx:id="table_client" layoutX="37.0" layoutY="61.0" prefHeight="398.0" prefWidth="832.0" AnchorPane.rightAnchor="80.0">
+                                      <columns>
+                                        <TableColumn fx:id="col_id" prefWidth="118.0" text="CIN" />
+                                        <TableColumn fx:id="col_nom" prefWidth="122.0" text="Nom" />
+                                          <TableColumn fx:id="col_prenom" prefWidth="116.0" text="Prénom" />
+                                          <TableColumn fx:id="col_dateNaiss" prefWidth="148.0" text="Date de naissance" />
+                                          <TableColumn fx:id="col_tele" prefWidth="148.0" text="Télephone" />
+                                          <TableColumn prefWidth="179.0" text="Adresse" />
+                                      </columns>
+                                      
+                                    </TableView>
+                                    <JFXButton fx:id="btn_voir_credit" buttonType="RAISED" defaultButton="true" layoutX="416.0" layoutY="489.0" prefHeight="47.0" prefWidth="127.0" style="-fx-background-color:#009688;" text="Voir le crédit " textFill="WHITE" />
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Le crédit">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="table_credit" layoutX="170.0" layoutY="152.0" prefHeight="334.0" prefWidth="611.0" AnchorPane.leftAnchor="170.0">
+                                      <columns>
+                                        <TableColumn prefWidth="116.0" text="N° vente" />
+                                        <TableColumn prefWidth="115.0" text="Date Vente" />
+                                          <TableColumn prefWidth="123.0" text="Total Vente" />
+                                          <TableColumn prefWidth="131.0" text="Montant Payé" />
+                                          <TableColumn prefWidth="130.0" text="Montant restant" />
+                                      </columns>
+                                    </TableView>
+                                    <Label layoutX="161.0" layoutY="65.0" text="CIN  :" AnchorPane.leftAnchor="170.0" />
+                                    <Label layoutX="159.0" layoutY="90.0" text="Nom :" AnchorPane.leftAnchor="170.0" />
+                                    <Label layoutX="161.0" layoutY="117.0" text="Prénom :" AnchorPane.leftAnchor="170.0" />
+                                    <Label layoutX="232.0" layoutY="65.0" />
+                                    <Label layoutX="232.0" layoutY="90.0" />
+                                    <Label layoutX="232.0" layoutY="117.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content></Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+            </AnchorPane>
+              <AnchorPane fx:id="anchor_emp" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTabPane fx:id="tabpann_emp" layoutX="26.0" layoutY="36.0" prefHeight="600.0" prefWidth="958.0" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab fx:id="tabpane_tab_emp" text="Les employés">
+                           <content>
+                              <AnchorPane fx:id="pane_emp" prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="table_emp" layoutX="140.0" layoutY="144.0" prefHeight="271.0" prefWidth="472.0">
+                                      <columns>
+                                        <TableColumn prefWidth="110.0" text="CIN" />
+                                        <TableColumn prefWidth="112.0" text="NOM" />
+                                          <TableColumn prefWidth="114.0" text="PRENOM" />
+                                          <TableColumn prefWidth="135.0" text="TELEPHONE" />
+                                          <TableColumn prefWidth="51.0" />
+                                      </columns>
+                                    </TableView>
+                                 </children></AnchorPane>
+                           </content></Tab>
+                        <Tab fx:id="tabpane_tab_ajouter" text="Ajouter">
+                           <content>
+                              <AnchorPane fx:id="pane_ajouter" prefHeight="640.0" prefWidth="958.0">
+                                 <children>
+                                    <JFXTextField fx:id="nom_emp" layoutX="329.0" layoutY="201.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="201.0" />
+                                    <JFXTextField layoutX="329.0" layoutY="265.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="265.0" />
+                                    <Label layoutX="329.0" layoutY="184.0" prefHeight="17.0" prefWidth="50.0" text="Nom* :" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="184.0" />
+                                    <Label layoutX="683.0" layoutY="184.0" text="Prénom* : " AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="184.0" />
+                                    <Label layoutX="686.0" layoutY="248.0" text="Date de naissance* :" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="248.0" />
+                                    <Label layoutX="327.0" layoutY="314.0" prefHeight="17.0" prefWidth="42.0" text="Email :" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="314.0" />
+                                    <Label layoutX="686.0" layoutY="314.0" text="Télephone* :" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="314.0" />
+                                    <Label layoutX="324.0" layoutY="446.0" text="Adresse :" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="446.0" />
+                                    <Label layoutX="329.0" layoutY="390.0" prefHeight="17.0" prefWidth="57.0" text="RIB* : " AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="390.0" />
+                                    <Label layoutX="329.0" layoutY="257.0" prefHeight="17.0" prefWidth="38.0" text="CIN*:" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="257.0" />
+                                    <JFXTextField layoutX="329.0" layoutY="330.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="330.0" />
+                                    <JFXTextField fx:id="prenom_emp" layoutX="622.0" layoutY="201.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="201.0" />
+                                    <JFXTextField layoutX="329.0" layoutY="395.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="395.0" />
+                                    <JFXTextField layoutX="683.0" layoutY="330.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="330.0" />
+                                    <JFXButton fx:id="btn_ajout_emp" layoutX="625.0" layoutY="538.0" onAction="#ajoutEmploye" prefHeight="47.0" prefWidth="135.0" style="-fx-background-color:#009688;" text="Ajouter" textFill="WHITE">
+                                       <textFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop color="BLACK" />
+                                                <Stop color="WHITE" offset="1.0" />
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label layoutX="329.0" layoutY="545.0" text="Les champs (*) sont obligatoire." />
+                                    <JFXDatePicker layoutX="624.0" layoutY="265.0" prefHeight="25.0" prefWidth="225.0" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="265.0" />
+                                    <JFXTextField fx:id="adresse_emp" layoutX="329.0" layoutY="467.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="467.0" />
+                                    <JFXRadioButton layoutX="684.0" layoutY="407.0" text="Homme" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="407.0" />
+                                    <JFXRadioButton layoutX="735.0" layoutY="407.0" text="Femme" AnchorPane.leftAnchor="735.0" AnchorPane.topAnchor="407.0" />
+                                    <Label layoutX="679.0" layoutY="378.0" text="Sexe* :" AnchorPane.leftAnchor="622.0" AnchorPane.topAnchor="378.0" />
+                                    <JFXComboBox fx:id="combobox_emp" layoutX="626.0" layoutY="467.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="626.0" AnchorPane.topAnchor="467.0" />
+                                    <Label layoutX="629.0" layoutY="446.0" text="Emploi :" AnchorPane.leftAnchor="629.0" AnchorPane.topAnchor="446.0" />
+                                    <Label layoutX="195.0" layoutY="398.0" />
+                                    <Circle fx:id="img_emp" layoutX="556.0" layoutY="91.0" onMouseClicked="#handleOnMouseClicked" radius="75.0" stroke="#009688" strokeType="INSIDE" AnchorPane.topAnchor="20.0">
+                                       <fill>
+                                          <LinearGradient endX="0.014285714285714285" endY="1.0" startY="1.0">
+                                             <stops>
+                                                <Stop color="BLACK" />
+                                                <Stop color="WHITE" offset="0.8831615120274914" />
+                                                <Stop color="WHITE" offset="0.9347079037800686" />
+                                                <Stop color="WHITE" offset="1.0" />
+                                             </stops>
+                                          </LinearGradient>
+                                       </fill>
+                                    </Circle>
+                                 </children>
+                              </AnchorPane>
+                           </content></Tab>
                      </tabs>
                   </JFXTabPane>
                </children>
