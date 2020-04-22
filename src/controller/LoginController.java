@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -26,8 +27,6 @@ public class LoginController {
     @FXML
     void loginInAction(ActionEvent event) {
 
-        System.out.println("pffffffffffff");
-
         btn_login.getScene().getWindow().hide();
 
             Parent root= null;
@@ -35,6 +34,7 @@ public class LoginController {
         try {
 
             root = FXMLLoader.load(getClass().getResource("/pharmapp_test/FXMLDocument.fxml"));
+            
 
         } catch (IOException ex) {
 
@@ -47,6 +47,9 @@ public class LoginController {
             Scene scene = new Scene(root);
 
             stage.setScene(scene);
+            Image icon = new Image("/images/logo.png");
+        stage.getIcons().add(icon);
+        stage.setTitle("PHARMAPP");
 
             stage.show();
 

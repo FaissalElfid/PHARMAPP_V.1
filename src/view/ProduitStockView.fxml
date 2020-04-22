@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="483.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controller.StockFormController">
+   <children>
+      <Label layoutX="210.0" layoutY="60.0" text="Stock" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="quantite" layoutX="147.0" layoutY="165.0" prefHeight="31.0" prefWidth="194.0" promptText="La quantité en stock" />
+      <JFXTextField fx:id="seuilMin" layoutX="147.0" layoutY="251.0" prefHeight="22.0" prefWidth="194.0" promptText="Le Seuil de quantité minimal" />
+      <JFXTextField fx:id="quantiteDefec" layoutX="147.0" layoutY="341.0" prefHeight="25.0" prefWidth="194.0" promptText="Quantité défectueuse " />
+      <JFXButton fx:id="ajouter" buttonType="RAISED" defaultButton="true" layoutX="287.0" layoutY="420.0" onAction="#saveProduit" prefHeight="52.0" prefWidth="108.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Ajouter" textFill="WHITE" />
+   </children>
+</AnchorPane>

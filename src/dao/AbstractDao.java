@@ -63,6 +63,15 @@ public class AbstractDao<T> {
 
     }
 
+        public T loadOne(String requette) throws Exception {
+           List<T> list=load(requette);
+           if(list==null || list.isEmpty()){
+               return null;
+           }else{
+               return list.get(0);
+           }
+        }
+
     public List<T> load(String requette) throws Exception {
         ResultSet resultSet = ConnectDB.load(requette);
         List<Method> setters = DaoEngigne.getSetterList(entityClass);

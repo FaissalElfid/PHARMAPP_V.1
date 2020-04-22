@@ -6,6 +6,7 @@
 package controller;
 
 import bean.Produit;
+import bean.Stock;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import view.table.Medicament;
+import view.table.TableStock;
 import view.table.Table_Commande;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -35,8 +36,11 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import dao.ProduitDao;
+import dao.StockDao;
 import java.io.File;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.PauseTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -54,6 +58,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import service.ProduitService;
+import util.PanierLigne;
 
 
 /**
@@ -90,31 +95,31 @@ public class FirstController implements Initializable {
     private AnchorPane anchor_commandes;
     
      @FXML
-    private TableView<Produit> table_produits;
+    private TableView<TableStock> table_produits;
 
     @FXML
-    private TableColumn<Produit, String> table_prod_code;
+    private TableColumn<TableStock, String> table_prod_code;
 
     @FXML
-    private TableColumn<Produit, String> table_prod_libelle;
+    private TableColumn<TableStock, String> table_prod_libelle;
 
     @FXML
-    private TableColumn<Produit, String> table_prod_categorie;
+    private TableColumn<TableStock, String> table_prod_categorie;
 
     @FXML
-    private TableColumn<Produit, Number> table_prod_prix;
+    private TableColumn<TableStock, Number> table_prod_prix;
     
         @FXML
-    private TableColumn<Produit, Number> table_prod_quantite;
+    private TableColumn<TableStock, Number> table_prod_quantite;
 
     @FXML
-    private TableColumn<Produit, String> table_prod_marque;
+    private TableColumn<TableStock, String> table_prod_marque;
 
     @FXML
-    private TableColumn<Produit, String> table_prod_dateExp;
+    private TableColumn<TableStock, String> table_prod_dateExp;
 
     @FXML
-    private TableColumn<Produit, String> table_prod_remarque;
+    private TableColumn<TableStock, String> table_prod_remarque;
     
     @FXML
     private TableView<Table_Commande> table_alerts;
@@ -177,7 +182,40 @@ public class FirstController implements Initializable {
     private JFXTabPane tabpane_medicament;
      @FXML
     private Tab tabMedicamentModifier;
-     
+     //faissal les objets ajouter le 22/04/2020
+          @FXML
+    private TableView<PanierLigne> panierTableView;
+
+    @FXML
+    private TableColumn<PanierLigne, String> codeProduitPanier;
+
+    @FXML
+    private TableColumn<PanierLigne, String> designationPanier;
+
+    @FXML
+    private TableColumn<PanierLigne, String> categoriePanier;
+
+    @FXML
+    private TableColumn<PanierLigne, Number> stockPanier;
+
+    @FXML
+    private TableColumn<PanierLigne, String> commandePanier;
+
+    @FXML
+    private TableColumn<PanierLigne, Number> prixPanier;
+
+    @FXML
+    private TableColumn<PanierLigne, Number> totalPanierTableau;
+    
+    @FXML
+    private JFXTextField codeProduiPanier;
+
+    @FXML
+    private JFXTextField quantiteCommandePanier;
+    @FXML
+    private Label totalPrixPanier;
+     @FXML
+    private JFXTextField montantPayerPanier;
      
     
     @Override
@@ -214,7 +252,8 @@ public class FirstController implements Initializable {
         alert_select.setCellValueFactory(new PropertyValueFactory<>("statutProperty"));
         alert_select.setCellFactory(CheckBoxTableCell.forTableColumn(alert_select));
         table_alerts.setEditable(true);
-        
+        configTabPanier(panierTableView, codeProduitPanier, designationPanier,  categoriePanier , stockPanier,  commandePanier, prixPanier,  totalPanierTableau);
+
         updateTableViewProduits();
  
 
@@ -295,6 +334,12 @@ public class FirstController implements Initializable {
     {
         return text.matches("[0-9]*");
     }
+    private Long code;
+
+    public Long getCode() {
+        return code;
+    }
+
     @FXML
     private void saveProduit(ActionEvent e) throws Exception {
         
@@ -317,8 +362,9 @@ public class FirstController implements Initializable {
             // ici tous les champs sont remplis
             Produit produit = new Produit();
         ProduitDao produitDao = new ProduitDao();
-        String code;
-        code = codeProduitField.getText();
+        StockDao stockDao = new StockDao();
+        Stock stock = new Stock();
+        code = Long.parseLong(codeProduitField.getText());
             if( produitDao.findById(code) != null){
                    // l'exeption pour l'unicité de la clé primaire code produit
             resultatAjoutProduitLabel.setStyle("-fx-text-fill : red");
@@ -334,8 +380,13 @@ public class FirstController implements Initializable {
         produit.setRemarque(remarqueProduitArea.getText());
         produit.setDateExp(dateExpirationField.getValue().toString());
         produit.setPrixVente(Double.parseDouble(prixVenteField.getText()));
-        produit.setQuantiteStock(Integer.parseInt(quantiteStockField.getText()));
         produitDao.save(produit);
+        stock.setProduit(produit);
+        stock.setId(code);
+        stock.setQuantite(0);
+        stock.setQuantitDefectueise(0);
+        stock.setQuantitemin(0);
+        stockDao.save(stock);
         codeProduitField.setText("");
         designationProduitField.setText("");
           prixVenteField.setText("");
@@ -345,6 +396,15 @@ public class FirstController implements Initializable {
           categorieProduitField.setText("");
           quantiteStockField.setText("");
           prixVenteField.setText("");
+          
+          
+          FXMLLoader fxmlLoader = new  FXMLLoader(getClass().getResource("/view/ProduitStockView.fxml"));
+               Parent root1=(Parent)fxmlLoader.load();
+               Stage stage=new Stage();
+              stage.setTitle("ajouter un client");
+              stage.setScene(new Scene(root1));
+              stage.setResizable(false);
+              stage.show(); 
           resultatAjoutProduitLabel.setStyle("-fx-text-fill : green");
           resultatAjoutProduitLabel.setText("Le produit est enregistrer avec succé");
           montrer(resultatAjoutProduitLabel,3); 
@@ -373,15 +433,15 @@ public class FirstController implements Initializable {
            private void  testClient(ActionEvent event){
                 text_vente_link_client.setVisible(false);
              //client n'existe pas
-               if(text_vente_code_client.getText().toString().equalsIgnoreCase("aicha")){
-                    
+             System.out.println(text_vente_code_client.getText());
+               if(text_vente_code_client.getText().equals("aicha")== false){
                    Alert a = new Alert(AlertType.NONE); 
                 // set alert type 
                 a.setAlertType(AlertType.WARNING); 
                     // show the dialog 
                     a.setContentText("le client n'existe pas ");
                 a.show();
-                 text_vente_link_client.setVisible(true);
+                 text_vente_code_client.setVisible(true);
                 
             } 
                
@@ -402,7 +462,7 @@ public class FirstController implements Initializable {
             @FXML
            private void  ajoutClient(ActionEvent event) throws IOException{
                
-               FXMLLoader fxmlLoader = new  FXMLLoader(getClass().getResource("/pharmapp_test/formulaireClient.fxml"));
+               FXMLLoader fxmlLoader = new  FXMLLoader(getClass().getResource("/view/formulaireClient.fxml"));
                Parent root1=(Parent)fxmlLoader.load();
                Stage stage=new Stage();
               stage.setTitle("ajouter un client");
@@ -418,7 +478,7 @@ public class FirstController implements Initializable {
     @FXML
     void modifierSupprimerHyperLink(ActionEvent event) {
 
-        findCodeProduit.setText(table_produits.getSelectionModel().getSelectedItem().getId());
+        findCodeProduit.setText(""+table_produits.getSelectionModel().getSelectedItem().getId());
         findDesignation.setText(table_produits.getSelectionModel().getSelectedItem().getDesignation());
         tabpane_medicament.getSelectionModel().select(tabMedicamentModifier);
         // modifierHomeAnchorPane.toFront();
@@ -431,35 +491,42 @@ public class FirstController implements Initializable {
     @FXML
     void deleteFindProduit(ActionEvent event) throws Exception {
         ProduitDao produitDao = new ProduitDao();
+        StockDao sd = new StockDao();
         Produit produit = new Produit();
+        Stock stock = new Stock();
         produit = produitDao.findById(findCodeProduit.getText());
+        stock = sd.findById(findCodeProduit.getText());
+        
         if(produit == null){
             System.out.println("le code produit que vous demander est introuvable");
         }
         else{
             produitDao.delete(produit);
+            sd.delete(stock);
             updateTableViewProduits();
         }
     }
 
     @FXML
     void modifierFindProduit(ActionEvent event) throws Exception {//modifierFindProduit
+        StockDao stockDao = new StockDao();
         ProduitDao produitDao = new ProduitDao();
-        Produit produit = new Produit();
+        Stock stock = new Stock();
+        Produit produit = new Produit(); 
+        stock = stockDao.findById(findCodeProduit.getText());
         produit = produitDao.findById(findCodeProduit.getText());
-        if(produit == null){
+        if (stock == null) {
             System.out.println("le code produit que vous demander est introuvable");
-        }
-        else{
-        modifierAnchorPane.toFront();
-        designationProduitModifierField.setText(produit.getDesignation());
-        quantiteStockModifierField.setText(""+produit.getQuantiteStock());
-        marqueProduitModifierField.setText(produit.getMarque());
-        categorieProduitModifierField.setText(produit.getCategorie());
-        prixVenteModifierField.setText(""+produit.getPrixVente());
-        codeProduitModifier.setText(produit.getId());
-        remarqueProduitModifierArea.setText(produit.getRemarque());
-        
+        } else {
+            modifierAnchorPane.toFront();
+            designationProduitModifierField.setText(stock.getProduit().getDesignation());
+            quantiteStockModifierField.setText("" + stock.getQuantite());
+            marqueProduitModifierField.setText(stock.getProduit().getMarque());
+            categorieProduitModifierField.setText(stock.getProduit().getCategorie());
+            prixVenteModifierField.setText("" + stock.getProduit().getPrixVente());
+            codeProduitModifier.setText(""+stock.getProduit().getId());
+            remarqueProduitModifierArea.setText(stock.getProduit().getRemarque());
+
         }
     }
     @FXML
@@ -486,6 +553,42 @@ public class FirstController implements Initializable {
         
         }
     }
+     List<PanierLigne> panier = new ArrayList<>();
+      @FXML
+    void ajouterPanier(ActionEvent event) throws Exception {
+        int qtt;
+        double total;
+        ProduitService ps = new ProduitService();
+        qtt = Integer.parseInt(quantiteCommandePanier.getText());
+        total = ps.ajouterPanier(panierTableView,panier, codeProduiPanier.getText() , qtt);
+        totalPrixPanier.setText(""+total);
+        
+
+    }
+      @FXML
+    void payerPanierTxt(ActionEvent event) {
+        double x = Double.parseDouble(totalPrixPanier.getText());
+        if(x != Double.parseDouble(montantPayerPanier.getText())){
+            toggle_btn_passager.setSelected(false);
+        }
+        else{
+            toggle_btn_passager.setSelected(true);
+        }
+    }
+        public void configTabPanier(TableView<PanierLigne> table, TableColumn<PanierLigne, String> codeProduitPanier, TableColumn<PanierLigne, String> designationPanier, TableColumn<PanierLigne, String> categoriePanier ,TableColumn<PanierLigne, Number> stockPanier, TableColumn<PanierLigne, String> commandePanier, TableColumn<PanierLigne, Number> prixPanier, TableColumn<PanierLigne, Number> totalPanierTableau){
+        codeProduitPanier.setCellValueFactory(new PropertyValueFactory<>("code_prod"));
+        designationPanier.setCellValueFactory(new PropertyValueFactory<>("designation"));
+        stockPanier.setCellValueFactory(new PropertyValueFactory<>("quantiteStock"));
+        commandePanier.setCellValueFactory(new PropertyValueFactory<>("quantiteCommande"));
+        prixPanier.setCellValueFactory(new PropertyValueFactory<>("prixUnitaire"));
+        totalPanierTableau.setCellValueFactory(new PropertyValueFactory<>("total"));
+        categoriePanier.setCellValueFactory(new PropertyValueFactory<>("categorie"));
+
+    }
+    
+    
+     
+    
     
     
      

@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -20,9 +21,10 @@ public class Pharmapp_test extends Application {
     public void start(Stage stage) throws Exception {
         Parent root;
         root = FXMLLoader.load(getClass().getResource("/view/LoginView.fxml"));
-        
+        Image icon = new Image("/images/logo.png");
+        stage.getIcons().add(icon);
+        stage.setTitle("PHARMAPP");
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
