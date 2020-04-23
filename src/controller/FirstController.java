@@ -89,7 +89,7 @@ public class FirstController implements Initializable {
     private JFXButton btn_client, btn_fournisseurs, btn_fileChoser, btn_empl,btn_voir_credit;
     
     @FXML
-    private JFXTextField codeProduitField, designationProduitField, prixVenteField, quantiteStockField, marqueProduitField, categorieProduitField;
+    private JFXTextField codeProduitField, designationProduitField, prixVenteField, marqueProduitField, categorieProduitField;
     
      @FXML
     private Label resultatAjoutProduitLabel,cinVenteClient,nomVenteClient,prenomVenteClient;
@@ -459,16 +459,16 @@ public class FirstController implements Initializable {
     {
         return text.matches("[0-9]*");
     }
-    private Long code;
+    private static Long code;
 
-    public Long getCode() {
+    public static Long getCode() {
         return code;
     }
 
     @FXML
     private void saveProduit(ActionEvent e) throws Exception {
         
-        if(codeProduitField.getText().length()==0|| categorieProduitField.getText().length()==0 ||designationProduitField.getText().length() ==0||prixVenteField.getText().length() ==0||quantiteStockField.getText().length() ==0 ||dateExpirationField.getValue().equals(null)||remarqueProduitArea.getText().length()==0 || marqueProduitField.getText().length()==0){
+        if(codeProduitField.getText().length()==0|| categorieProduitField.getText().length()==0 ||designationProduitField.getText().length() ==0||prixVenteField.getText().length() ==0 ||dateExpirationField.getValue().equals(null)||remarqueProduitArea.getText().length()==0 || marqueProduitField.getText().length()==0){
          // le message d'erreur pour les champs vides
 
             resultatAjoutProduitLabel.setStyle("-fx-text-fill : red");
@@ -477,7 +477,7 @@ public class FirstController implements Initializable {
             montrer(resultatAjoutProduitLabel,4);
         }
             else{
-             if(validate(prixVenteField.getText())== false || validate(quantiteStockField.getText())== false){
+             if(validate(prixVenteField.getText())== false || validate(codeProduitField.getText())== false){
              System.out.println("entrer un nombre a la place reservé");
              resultatAjoutProduitLabel.setStyle("-fx-text-fill : red");
             resultatAjoutProduitLabel.setText("entrer un nombre a la place reservé");
@@ -515,18 +515,18 @@ public class FirstController implements Initializable {
         codeProduitField.setText("");
         designationProduitField.setText("");
           prixVenteField.setText("");
-          quantiteStockField.setText("");
           marqueProduitField.setText("");
           remarqueProduitArea.setText("");
           categorieProduitField.setText("");
-          quantiteStockField.setText("");
           prixVenteField.setText("");
-          
+                System.out.println(stock);
+                System.out.println(produit);
+                
           
           FXMLLoader fxmlLoader = new  FXMLLoader(getClass().getResource("/view/ProduitStockView.fxml"));
                Parent root1=(Parent)fxmlLoader.load();
                Stage stage=new Stage();
-              stage.setTitle("ajouter un client");
+              stage.setTitle("Stock");
               stage.setScene(new Scene(root1));
               stage.setResizable(false);
               stage.show(); 
@@ -759,7 +759,6 @@ public class FirstController implements Initializable {
         } else {
             modifierAnchorPane.toFront();
             designationProduitModifierField.setText(stock.getProduit().getDesignation());
-            quantiteStockModifierField.setText("" + stock.getQuantite());
             marqueProduitModifierField.setText(stock.getProduit().getMarque());
             categorieProduitModifierField.setText(stock.getProduit().getCategorie());
             prixVenteModifierField.setText("" + stock.getProduit().getPrixVente());
@@ -780,6 +779,13 @@ public class FirstController implements Initializable {
         produit.setDesignation(designationProduitModifierField.getText());
         produit.setMarque(marqueProduitModifierField.getText());
         produit.setCategorie(categorieProduitModifierField.getText());
+        FXMLLoader fxmlLoader = new  FXMLLoader(getClass().getResource("/view/ProduitStockView.fxml"));
+               Parent root1=(Parent)fxmlLoader.load();
+               Stage stage=new Stage();
+              stage.setTitle("Stock");
+              stage.setScene(new Scene(root1));
+              stage.setResizable(false);
+              stage.show(); 
         produitDao.update(produit);
         updateTableViewProduits();
         PauseTransition visiblePause = new PauseTransition(

@@ -356,25 +356,20 @@
                                           <Font size="14.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="prixVenteField" layoutX="226.0" layoutY="288.0" promptText="Prix de vente">
+                                    <JFXTextField fx:id="prixVenteField" layoutX="578.0" layoutY="308.0" promptText="Prix de vente">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </JFXTextField>
                                     <JFXDatePicker fx:id="dateExpirationField" layoutX="586.0" layoutY="114.0" prefHeight="35.0" prefWidth="260.0" promptText="Date d'éxpiration" />
-                                    <JFXTextField fx:id="quantiteStockField" layoutX="586.0" layoutY="200.0" prefHeight="36.0" prefWidth="243.0" promptText="Quantité en stock">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </JFXTextField>
                                     <JFXTextArea fx:id="remarqueProduitArea" layoutX="226.0" layoutY="434.0" prefHeight="110.0" prefWidth="352.0" promptText="Informations supplémentaire" />
                                     <JFXButton buttonType="RAISED" defaultButton="true" layoutX="716.0" layoutY="434.0" onAction="#saveProduit" prefHeight="63.0" prefWidth="140.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Ajouter" textFill="WHITE" />
-                                    <JFXTextField fx:id="marqueProduitField" layoutX="583.0" layoutY="288.0" prefHeight="25.0" prefWidth="249.0" promptText="Marque">
+                                    <JFXTextField fx:id="marqueProduitField" layoutX="586.0" layoutY="195.0" prefHeight="35.0" prefWidth="249.0" promptText="Marque">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="categorieProduitField" layoutX="225.0" layoutY="368.0" promptText="Catégorie">
+                                    <JFXTextField fx:id="categorieProduitField" layoutX="225.0" layoutY="308.0" promptText="Catégorie">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -388,47 +383,6 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <AnchorPane fx:id="modifierAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F3F3F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Label layoutX="182.0" layoutY="96.0" text="Vous avez choisie le produits dont le code produit est ">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="codeProduitModifier" layoutX="527.0" layoutY="96.0" prefHeight="20.0" prefWidth="123.0">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <JFXDatePicker fx:id="dateExpirationModifierField" layoutX="570.0" layoutY="177.0" prefHeight="35.0" prefWidth="260.0" promptText="Date d'éxpiration" />
-                                          <JFXTextField fx:id="designationProduitModifierField" layoutX="224.0" layoutY="177.0" prefHeight="35.0" prefWidth="252.0" promptText="Désignation">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </JFXTextField>
-                                          <JFXTextField fx:id="quantiteStockModifierField" layoutX="570.0" layoutY="267.0" prefHeight="36.0" prefWidth="243.0" promptText="Quantité en stock">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </JFXTextField>
-                                          <JFXTextField fx:id="marqueProduitModifierField" layoutX="226.0" layoutY="270.0" prefHeight="25.0" prefWidth="249.0" promptText="Marque">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </JFXTextField>
-                                          <JFXTextField fx:id="categorieProduitModifierField" layoutX="570.0" layoutY="367.0" promptText="Catégorie">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </JFXTextField>
-                                          <JFXTextField fx:id="prixVenteModifierField" layoutX="226.0" layoutY="367.0" promptText="Prix de vente">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </JFXTextField>
-                                          <JFXTextArea fx:id="remarqueProduitModifierArea" layoutX="226.0" layoutY="436.0" prefHeight="110.0" prefWidth="352.0" promptText="Informations supplémentaire" />
-                                          <JFXButton buttonType="RAISED" defaultButton="true" layoutX="682.0" layoutY="462.0" onAction="#updateFindProduit" prefHeight="63.0" prefWidth="140.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Modifier" textFill="WHITE" />
-                                       </children></AnchorPane>
                                     <AnchorPane fx:id="modifierHomeAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F3F3F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <AnchorPane layoutX="298.0" layoutY="138.0" prefHeight="352.0" prefWidth="380.0" style="-fx-border-color: #043D68; -fx-border-width: 2px; -fx-border-radius: 10px; -fx-background-color: white;" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="298.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="138.0">
@@ -453,6 +407,42 @@
                                           </AnchorPane>
                                        </children>
                                     </AnchorPane>
+                                    <AnchorPane fx:id="modifierAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F3F3F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label layoutX="182.0" layoutY="96.0" text="Vous avez choisie le produits dont le code produit est ">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="codeProduitModifier" layoutX="527.0" layoutY="96.0" prefHeight="20.0" prefWidth="123.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXDatePicker fx:id="dateExpirationModifierField" layoutX="570.0" layoutY="177.0" prefHeight="35.0" prefWidth="260.0" promptText="Date d'éxpiration" />
+                                          <JFXTextField fx:id="designationProduitModifierField" layoutX="224.0" layoutY="177.0" prefHeight="35.0" prefWidth="252.0" promptText="Désignation">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="marqueProduitModifierField" layoutX="226.0" layoutY="270.0" prefHeight="25.0" prefWidth="249.0" promptText="Marque">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="categorieProduitModifierField" layoutX="589.0" layoutY="361.0" promptText="Catégorie">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="prixVenteModifierField" layoutX="589.0" layoutY="270.0" promptText="Prix de vente">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <JFXTextArea fx:id="remarqueProduitModifierArea" layoutX="201.0" layoutY="397.0" prefHeight="110.0" prefWidth="352.0" promptText="Informations supplémentaire" />
+                                          <JFXButton buttonType="RAISED" defaultButton="true" layoutX="682.0" layoutY="462.0" onAction="#updateFindProduit" prefHeight="63.0" prefWidth="140.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Modifier" textFill="WHITE" />
+                                       </children></AnchorPane>
                                  </children></AnchorPane>
                            </content>
                         </Tab>
