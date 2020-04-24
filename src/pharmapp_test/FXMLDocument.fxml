@@ -26,7 +26,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="663.0" prefWidth="700.0" style="-fx-min-height: 400; -fx-max-height: 800; -fx-pref-height: 650; -fx-pref-width: 1200; -fx-min-width: 300; -fx-max-width: 1500;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FirstController">
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="663.0" prefWidth="700.0" style="-fx-min-height: 400; -fx-max-height: 800; -fx-pref-height: 650; -fx-pref-width: 1200; -fx-min-width: 300; -fx-max-width: 1500;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FirstController">
    <children>
       <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="430.0" prefWidth="213.0" style="-fx-background-color: #F2F5F7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -70,7 +70,7 @@
                </graphic></JFXButton>
             <ImageView fitHeight="140.0" fitWidth="148.0" layoutX="66.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="423.0" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../images/pharmapp%20logo%20java.png" />
+                  <Image url="@../images/logo.png" />
                </image>
             </ImageView>
             <Line endX="121.0" endY="1.0" layoutX="121.0" layoutY="169.0" startX="-72.0" startY="1.0" stroke="#043d68" AnchorPane.bottomAnchor="392.5" AnchorPane.leftAnchor="48.5" AnchorPane.rightAnchor="0.5" AnchorPane.topAnchor="169.5" />
@@ -196,55 +196,6 @@
                   </JFXTabPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchor_client" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <JFXTabPane fx:id="tab_pane_client" prefHeight="563.0" prefWidth="458.0" rotateGraphic="true" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <tabs>
-                        <Tab text="Clients">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="486.0">
-                                 <children>
-                                    <TableView fx:id="table_client" layoutX="37.0" layoutY="61.0" prefHeight="398.0" prefWidth="832.0" AnchorPane.rightAnchor="80.0">
-                                      <columns>
-                                        <TableColumn fx:id="col_id" prefWidth="118.0" text="CIN" />
-                                        <TableColumn fx:id="col_nom" prefWidth="122.0" text="Nom" />
-                                          <TableColumn fx:id="col_prenom" prefWidth="116.0" text="Prénom" />
-                                          <TableColumn fx:id="col_dateNaiss" prefWidth="148.0" text="Date de naissance" />
-                                          <TableColumn fx:id="col_tele" prefWidth="148.0" text="Télephone" />
-                                          <TableColumn prefWidth="179.0" text="Adresse" />
-                                      </columns>
-                                      
-                                    </TableView>
-                                    <JFXButton fx:id="btn_voir_credit" buttonType="RAISED" defaultButton="true" layoutX="416.0" layoutY="489.0" prefHeight="47.0" prefWidth="127.0" style="-fx-background-color:#009688;" text="Voir le crédit " textFill="WHITE" />
-                                 </children></AnchorPane>
-                          </content>
-                        </Tab>
-                        <Tab text="Le crédit">
-                           <content>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                 <children>
-                                    <TableView fx:id="table_credit" layoutX="170.0" layoutY="152.0" prefHeight="334.0" prefWidth="611.0" AnchorPane.leftAnchor="170.0">
-                                      <columns>
-                                        <TableColumn prefWidth="116.0" text="N° vente" />
-                                        <TableColumn prefWidth="115.0" text="Date Vente" />
-                                          <TableColumn prefWidth="123.0" text="Total Vente" />
-                                          <TableColumn prefWidth="131.0" text="Montant Payé" />
-                                          <TableColumn prefWidth="130.0" text="Montant restant" />
-                                      </columns>
-                                    </TableView>
-                                    <Label layoutX="161.0" layoutY="65.0" text="CIN  :" AnchorPane.leftAnchor="170.0" />
-                                    <Label layoutX="159.0" layoutY="90.0" text="Nom :" AnchorPane.leftAnchor="170.0" />
-                                    <Label layoutX="161.0" layoutY="117.0" text="Prénom :" AnchorPane.leftAnchor="170.0" />
-                                    <Label layoutX="232.0" layoutY="65.0" />
-                                    <Label layoutX="232.0" layoutY="90.0" />
-                                    <Label layoutX="232.0" layoutY="117.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content></Tab>
-                     </tabs>
-                  </JFXTabPane>
-               </children>
-            </AnchorPane>
               <AnchorPane fx:id="anchor_emp" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTabPane fx:id="tabpann_emp" layoutX="26.0" layoutY="36.0" prefHeight="600.0" prefWidth="958.0" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -356,7 +307,7 @@
                         <Font size="32.0" />
                      </font>
                   </Label>
-                  <JFXButton buttonType="RAISED" defaultButton="true" layoutX="732.0" layoutY="524.0" onAction="#testClient" prefHeight="47.0" prefWidth="104.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Valider" textFill="WHITE" />
+                  <JFXButton fx:id="btn_valider_vente" buttonType="RAISED" defaultButton="true" layoutX="732.0" layoutY="524.0" onAction="#validerVente" prefHeight="47.0" prefWidth="104.0" ripplerFill="BLACK" style="-fx-background-color: #009688;" text="Valider" textFill="WHITE" />
                   <JFXButton buttonType="RAISED" defaultButton="true" layoutX="579.0" layoutY="524.0" prefHeight="47.0" prefWidth="113.0" ripplerFill="BLACK" style="-fx-background-color: #E0E0E0;" text="Annuler" textFill="#009688" />
                   <JFXTextField fx:id="montantPayerPanier" layoutX="412.0" layoutY="432.0" onAction="#payerPanierTxt" prefHeight="35.0" prefWidth="191.0" promptText="Montant payé" />
                </children>
@@ -505,6 +456,54 @@
                                  </children></AnchorPane>
                            </content>
                         </Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+            </AnchorPane>
+           <AnchorPane fx:id="anchor_client" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTabPane fx:id="tab_pane_client" prefHeight="563.0" prefWidth="458.0" rotateGraphic="true" stylesheets="@../style/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab text="Clients">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="486.0">
+                                 <children>
+                                    <TableView fx:id="table_client" layoutX="37.0" layoutY="61.0" onMouseClicked="#displaySelected" prefHeight="398.0" prefWidth="832.0" AnchorPane.rightAnchor="80.0">
+                                      <columns>
+                                        <TableColumn fx:id="col_cin" prefWidth="118.0" text="CIN" />
+                                        <TableColumn fx:id="col_nom" prefWidth="122.0" text="Nom" />
+                                          <TableColumn fx:id="col_prenom" prefWidth="116.0" text="Prénom" />
+                                          <TableColumn fx:id="col_dateNaiss" prefWidth="148.0" text="Date de naissance" />
+                                          <TableColumn fx:id="col_tele" prefWidth="148.0" text="Télephone" />
+                                          <TableColumn fx:id="col_adresse" prefWidth="179.0" text="Adresse" />
+                                      </columns>
+                                      
+                                    </TableView>
+                                    <JFXButton fx:id="btn_voir_credit" buttonType="RAISED" defaultButton="true" layoutX="416.0" layoutY="489.0" onAction="#btn_voir_credit" prefHeight="47.0" prefWidth="127.0" style="-fx-background-color:#009688;" text="Voir le crédit " textFill="WHITE" />
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab fx:id="tabCredit" text="Le crédit">
+                           <content>
+                              <AnchorPane fx:id="anchor_credit" prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="table_credit" layoutX="170.0" layoutY="152.0" onMouseClicked="#displaySelected" prefHeight="334.0" prefWidth="510.0" AnchorPane.leftAnchor="170.0">
+                                      <columns>
+                                        <TableColumn fx:id="colNumvente" prefWidth="131.0" text="N° vente" />
+                                        <TableColumn fx:id="colDateVente" prefWidth="131.0" text="Date Vente" />
+                                          <TableColumn fx:id="colTotalVente" prefWidth="113.0" text="Total Vente" />
+                                          <TableColumn fx:id="colMontantPaye" prefWidth="135.0" text="Montant Payé" />
+                                      </columns>
+                                    </TableView>
+                                    <Label layoutX="161.0" layoutY="65.0" text="CIN  :" AnchorPane.leftAnchor="170.0" />
+                                    <Label layoutX="159.0" layoutY="90.0" text="Nom :" AnchorPane.leftAnchor="170.0" />
+                                    <Label layoutX="161.0" layoutY="117.0" text="Prénom :" AnchorPane.leftAnchor="170.0" />
+                                    <Label fx:id="cinVenteClient" layoutX="232.0" layoutY="65.0" prefHeight="17.0" prefWidth="154.0" />
+                                    <Label fx:id="nomVenteClient" layoutX="232.0" layoutY="90.0" prefHeight="17.0" prefWidth="129.0" />
+                                    <Label fx:id="prenomVenteClient" layoutX="232.0" layoutY="117.0" prefHeight="17.0" prefWidth="120.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content></Tab>
                      </tabs>
                   </JFXTabPane>
                </children>

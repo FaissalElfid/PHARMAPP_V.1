@@ -22,7 +22,7 @@ public class Stock {
     public Stock() {
     }
 
-    public Stock(Long id, Produit produit, double quantite, double quantitemin) {
+    public Stock(long id, Produit produit, double quantite, double quantitemin) {
         this.id = id;
         this.produit = produit;
         this.quantite = quantite;

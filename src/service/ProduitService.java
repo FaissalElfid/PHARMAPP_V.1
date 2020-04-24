@@ -27,8 +27,7 @@ import view.table.TableStock;
 //    public Produit(String id, String designation, int quantiteStock, double prixVente, String categorie, String marque, String remarque, Date dateExp) 
 //'Wed Jan 01 00:04:00 WET 2020
 public class ProduitService {
-        
-     
+
     public void affichage(TableView<TableStock> table_medic, TableColumn<TableStock,String> table_medic_code, TableColumn<TableStock, String> table_medic_libelle, TableColumn<TableStock, String> table_medic_categorie, TableColumn<TableStock, Number> table_prod_prix, TableColumn<TableStock, Number> table_prod_quantite, TableColumn<TableStock, String> table_prod_marque, TableColumn<TableStock, String> table_prod_dateExp, TableColumn<TableStock, String> table_prod_remarque) throws Exception{
         
         
@@ -68,8 +67,12 @@ public class ProduitService {
         
         table_medic.setItems(medi);    
 }
-    public double ajouterPanier(TableView<PanierLigne> panierTableView,List<PanierLigne> panier, String codeProduit, double qtt) throws Exception{
-        PanierLigne panierLigne = new PanierLigne(); 
+  
+    
+  public double ajouterPanier(TableView<PanierLigne> panierTableView,List<PanierLigne> panier, String codeProduit, double qtt) throws Exception{
+               
+        
+                PanierLigne panierLigne = new PanierLigne(); 
         ProduitDao produitDao = new ProduitDao();
         StockDao stockDao = new StockDao();
         Stock stock = new Stock();

@@ -5,8 +5,10 @@
  */
 package controller;
 
+import bean.Client;
 import bean.Produit;
 import bean.Stock;
+import bean.Vente;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -35,8 +37,12 @@ import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import dao.ClientDao;
+import dao.ConnectDB;
 import dao.ProduitDao;
 import dao.StockDao;
+import dao.VenteDao;
+import dao.VenteDetailleDao;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -58,6 +64,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import service.ProduitService;
+import service.VenteService;
 import util.PanierLigne;
 
 
@@ -76,16 +83,16 @@ public class FirstController implements Initializable {
     private Pane pnl_achats, pnl_ventes, pnl_reglement, pnl_fournisseurs;
     
     @FXML
-    private JFXButton btn_ventes, btn_achats, btn_commandes, btn_Reglements, btn_menu_medicament;
+    private JFXButton btn_ventes,btn_validerVente, btn_achats, btn_commandes, btn_Reglements, btn_menu_medicament;
     
     @FXML
-    private JFXButton btn_client, btn_fournisseurs, btn_fileChoser, btn_empl;
+    private JFXButton btn_client, btn_fournisseurs, btn_fileChoser, btn_empl,btn_voir_credit;
     
     @FXML
     private JFXTextField codeProduitField, designationProduitField, prixVenteField, quantiteStockField, marqueProduitField, categorieProduitField;
     
      @FXML
-    private Label resultatAjoutProduitLabel;
+    private Label resultatAjoutProduitLabel,cinVenteClient,nomVenteClient,prenomVenteClient;
      
     @FXML
     private AnchorPane anchor_medic, anchor_client ,anchor_emp,pane_emp;
@@ -93,6 +100,43 @@ public class FirstController implements Initializable {
   private Circle img_emp;
     @FXML
     private AnchorPane anchor_commandes;
+    //table client aicha 
+     @FXML
+    private TableView<Client> table_client;
+
+    @FXML
+    private TableColumn<Client ,String> col_cin;
+
+    @FXML
+    private TableColumn<Client , String> col_nom;
+
+    @FXML
+    private TableColumn<Client , String> col_prenom;
+
+    @FXML
+    private TableColumn<Client, String> col_dateNaiss;
+
+    @FXML
+    private TableColumn<Client, String> col_tele;
+
+    @FXML
+    private TableColumn<Client, String> col_adresse;
+     //credit
+ @FXML
+    private TableView<Vente> table_credit;
+
+    @FXML
+    private TableColumn<Vente, Number> colNumvente;
+
+    @FXML
+    private TableColumn<Vente, String> colDateVente;
+
+    @FXML
+    private TableColumn<Vente, Number> colTotalVente;
+
+    @FXML
+    private TableColumn<Vente,Number > colMontantPaye;
+//fin
     
      @FXML
     private TableView<TableStock> table_produits;
@@ -181,7 +225,7 @@ public class FirstController implements Initializable {
     @FXML
     private JFXTabPane tabpane_medicament;
      @FXML
-    private Tab tabMedicamentModifier;
+    private Tab tabMedicamentModifier,tabCredit;
      //faissal les objets ajouter le 22/04/2020
           @FXML
     private TableView<PanierLigne> panierTableView;
@@ -219,7 +263,29 @@ public class FirstController implements Initializable {
      
     
     @Override
+    
     public void initialize(URL url, ResourceBundle rb) {
+        //aicha
+        VenteService venteService =new VenteService();
+          
+             try {
+                  long a;
+                 a = venteService.getLastIdVente();
+                 System.out.println(a);
+             } catch (Exception ex) {
+                 Logger.getLogger(FirstController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+           
+        
+        
+     //fin
+   //par defaut   on vois pas le code et le toogle est de type)"cleint passaere
+   toggle_btn_passager.setSelected(true);
+   text_vente_code_client.setVisible(false);
+        // tab credit cacher par defaut  aicha
+        tabCredit.setDisable(true);
+        tabCredit.setText("");
+     
          Image image = new Image("/images/cravata.jpg");
          img_emp.setFill(new ImagePattern(image));
                  
@@ -284,7 +350,45 @@ public class FirstController implements Initializable {
                  Logger.getLogger(FirstController.class.getName()).log(Level.SEVERE, null, ex);
              }
         }
+   /// aihcaa
+    @FXML
+        private  void btn_voir_credit(ActionEvent event){
+         tabCredit.setDisable(false);
+         tabCredit.setText(" Le Crédit");
+         
+        // anchor_credit.toBack();
+         
+    }
     
+    //credit aicha:debut
+        @FXML
+        private void displaySelected(MouseEvent event) throws Exception{
+            System.out.println("controller.FirstController.displaySelected()");
+            Client client=table_client.getSelectionModel().getSelectedItem();
+            if(client == null){
+                System.out.println("nothing selected");
+            }
+            
+            else{
+                 cinVenteClient.setText(client.getCin());
+                       nomVenteClient.setText(client.getNom());
+                     prenomVenteClient .setText(client.getPrenom());
+                     VenteService venteService =new VenteService ();
+                        
+                    VenteDao venteDao =new VenteDao();
+         colNumvente.setCellValueFactory(new PropertyValueFactory<>("id"));
+          colDateVente.setCellValueFactory(new PropertyValueFactory<>("date_vente"));
+           colTotalVente.setCellValueFactory(new PropertyValueFactory<>("total"));
+            colMontantPaye.setCellValueFactory(new PropertyValueFactory<>("totalPayee"));
+            ObservableList<Vente> ventes = FXCollections.observableArrayList(venteService.venteClient(client.getId()));
+                  table_credit.setItems(ventes);
+            
+            }
+            
+            
+        }
+        
+        //fin aicha*/
    @FXML
     private void handleButtonAction(ActionEvent event) {
          System.out.println(event.getSource());
@@ -302,6 +406,27 @@ public class FirstController implements Initializable {
            
         }
         else if(event.getSource() == btn_client){
+            //affichage du table client "aicha"
+        ClientDao clientDao =new  ClientDao();
+             try {
+                 //client
+                 final ObservableList<Client> clients = FXCollections.observableArrayList(clientDao.findAll());
+                 
+                 table_client.setItems(clients);
+                 
+                 
+             } catch (Exception ex) {
+                 Logger.getLogger(FirstController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             col_cin.setCellValueFactory(new PropertyValueFactory<>("cin"));
+         col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+          col_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+           col_dateNaiss.setCellValueFactory(new PropertyValueFactory<>("dateNaissance"));
+            col_adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+             col_tele.setCellValueFactory(new PropertyValueFactory<>("telephone"));
+        
+        
+        
             anchor_client.toFront();
         }
         else if(event.getSource() == btn_fournisseurs){
@@ -413,7 +538,7 @@ public class FirstController implements Initializable {
     }} 
     }
 
-   
+   //filechosser  pour interface employe aicha
    @FXML
    private void handleOnMouseClicked(MouseEvent event) throws MalformedURLException {
 	   FileChooser fc=new  FileChooser();
@@ -427,37 +552,151 @@ public class FirstController implements Initializable {
          img_emp.setFill(new ImagePattern(image));
 
         } 
-    }
+    } 
    // cette fonction sert a afficher les alerts dans le cas d'existance des clietns ou non 
-     @FXML
-           private void  testClient(ActionEvent event){
-                text_vente_link_client.setVisible(false);
-             //client n'existe pas
-             System.out.println(text_vente_code_client.getText());
-               if(text_vente_code_client.getText().equals("aicha")== false){
-                   Alert a = new Alert(AlertType.NONE); 
-                // set alert type 
-                a.setAlertType(AlertType.WARNING); 
-                    // show the dialog 
-                    a.setContentText("le client n'existe pas ");
-                a.show();
-                 text_vente_code_client.setVisible(true);
-                
-            } 
+   @FXML
+     private void  validerVente(ActionEvent event) throws Exception{
+         
+         
+         if ( idproduits.size() > 0 ) {
+
+               ClientDao clientdao = new  ClientDao();
                
-               //client existe
-               else{
-                     
-                   Alert a = new Alert(AlertType.NONE); 
-                // set alert type 
-                a.setAlertType(AlertType.CONFIRMATION); 
+              Long idclient=null;
+              if(!montantPayerPanier.getText().toString().equals("")) {
+                    //le cas ou  ya pas de credit
+                    if(Double.parseDouble(totalPrixPanier.getText())==Double.parseDouble(montantPayerPanier.getText())){
+                        //commandepasse
+                        ventepasser(idclient);
+                        Alert a = new Alert(AlertType.NONE); 
+                        // set alert type 
+                        a.setAlertType(AlertType.CONFIRMATION); 
+                        // show the dialog 
+                        a.setContentText("la vente est valider ");
+                        a.show();
+                    }
+                    //le cas de credit
+                    else{
+                    //cas1: le cleitn deja exister
+                        if (!text_vente_code_client.getText().toString().equals("")) {
+                            if( clientdao.findById(Long.parseLong(text_vente_code_client.getText ()))!= null)   {
+                            Client client =new Client();
+                            client= clientdao.findById(Long.parseLong(text_vente_code_client.getText ()));
+                            idclient=client.getId();
+                            //vente passe
+                            ventepasser(idclient);
+                                Alert a = new Alert(AlertType.NONE); 
+                                // set alert type 
+                                a.setAlertType(AlertType.CONFIRMATION); 
+                                // show the dialog 
+                                a.setContentText("la vente est valider ");
+                                a.show();
+                                toggle_btn_passager.setSelected(true);
+                                text_vente_link_client.setVisible(false);
+                            }
+                            //cas 2: le client n'existe pas
+                            else{
+                                Alert a = new Alert(AlertType.NONE); 
+                                    a.setAlertType(AlertType.WARNING); 
+                                // show the dialog 
+                                    a.setContentText("le client n'existe pas ");
+                                    a.show();
+                                    text_vente_link_client.setVisible(true); 
+                                    text_vente_code_client.setVisible(true);
+                                
+                            }
+                        } else {
+                            Alert a = new Alert(AlertType.NONE); 
+                                    a.setAlertType(AlertType.WARNING); 
+                                // show the dialog 
+                                    a.setContentText("vous avez pas saisie aucun client");
+                                    a.show();
+                                   
+                        }
+                    
+                    
+                    }
+              }else {
+                    Alert b = new Alert(AlertType.NONE); 
+                    b.setAlertType(AlertType.WARNING); 
                     // show the dialog 
-                    a.setContentText("la commande est valider ");
-                a.show();
-        } 
-    
-           } 
-           
+                    b.setContentText("vous avez oublier de saisir le montant payee ");
+                    b.show();
+              }
+                
+        } else {
+                        Alert b = new Alert(AlertType.NONE); 
+                        b.setAlertType(AlertType.WARNING); 
+                        // show the dialog 
+                        b.setContentText("vous avez pas saisie aucun produits dans la liste");
+                        b.show();
+        }
+            
+               /*  if(!montantPayerPanier.getText().toString().equals("")){
+              //creation de la vente
+              if( Double.parseDouble(totalPrixPanier.getText())==Double.parseDouble(montantPayerPanier.getText()) ||  clientdao.findById(Long.parseLong(text_vente_code_client.getText ()))!= null){
+                 VenteDao venteDao =new VenteDao();
+                  VenteService venteService =new VenteService();
+                 VenteDetailleDao venteDetailleDao=new VenteDetailleDao();
+                 
+                 venteDao.saveVent(Double.parseDouble(totalPrixPanier.getText()),Double.parseDouble(montantPayerPanier.getText()), idclient);
+                    //creation ensemeble des detaille vente de la vente
+                 long idlastvente=venteService.getLastIdVente();
+                 for(int i=0;i<idproduits.size();i++){
+                     venteDetailleDao.saveVentDetaille( idlastvente,idproduits.get(i),qntCommande.get(i)) ; 
+      
+                }      
+                //vider tous 
+                totalPrixPanier.setText("Total"); 
+                montantPayerPanier.setText("");
+                montantPayerPanier.setPromptText("montant payee");
+                quantiteCommandePanier.setText("");
+                codeProduiPanier.setText("");
+                idproduits.clear(); 
+                qntCommande.clear();  
+                panier.clear();
+                panierTableView.getItems().clear();
+                System.out.println(idproduits);
+                System.out.println(qntCommande);
+              }
+                 }
+                 
+                 else{
+                     
+                 }*/
+                 
+    }
+
+    public void ventepasser(Long idClient) {
+        System.out.println("hre =>" +Double.parseDouble(totalPrixPanier.getText()) );
+        
+        try{ 
+            VenteDao venteDao =new VenteDao();
+                  VenteService venteService =new VenteService();
+                 VenteDetailleDao venteDetailleDao=new VenteDetailleDao();
+                 venteDao.saveVent(Double.parseDouble(totalPrixPanier.getText()),Double.parseDouble(montantPayerPanier.getText()), idClient);
+                    //creation ensemeble des detaille vente de la vente
+                 long idlastvente=venteService.getLastIdVente();
+                 for(int i=0;i<idproduits.size();i++){
+                     venteDetailleDao.saveVentDetaille(idlastvente,idproduits.get(i),qntCommande.get(i)) ; 
+      
+                }      
+                //vider tous 
+                totalPrixPanier.setText("Total"); 
+                montantPayerPanier.setText("");
+                montantPayerPanier.setPromptText("montant payee");
+                quantiteCommandePanier.setText("");
+                codeProduiPanier.setText("");
+                idproduits.clear(); 
+                qntCommande.clear();  
+                panier.clear();
+                panierTableView.getItems().clear();
+            
+        }catch(Exception e) {
+            System.out.println("erreur--sauvgarde");
+        }
+               
+    }      
            //cette fonction permet d'afficher la fromulaire du client 
             @FXML
            private void  ajoutClient(ActionEvent event) throws IOException{
@@ -554,16 +793,21 @@ public class FirstController implements Initializable {
         }
     }
      List<PanierLigne> panier = new ArrayList<>();
+     public List<Long> idproduits = new ArrayList<Long>();
+    public List<Double> qntCommande=new ArrayList<Double>();
+    
       @FXML
     void ajouterPanier(ActionEvent event) throws Exception {
-        int qtt;
+        double qtt;
         double total;
         ProduitService ps = new ProduitService();
-        qtt = Integer.parseInt(quantiteCommandePanier.getText());
+        qtt = Double.parseDouble(quantiteCommandePanier.getText()); 
+
         total = ps.ajouterPanier(panierTableView,panier, codeProduiPanier.getText() , qtt);
         totalPrixPanier.setText(""+total);
-        
-
+         idproduits.add(Long.parseLong(codeProduiPanier.getText()));
+        qntCommande.add(qtt);
+       
     }
       @FXML
     void payerPanierTxt(ActionEvent event) {

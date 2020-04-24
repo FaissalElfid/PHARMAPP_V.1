@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class Produit implements Serializable {
     
-    private Long id;
+    private long id;
     private String designation;
     private double prixVente;
     private String categorie;
@@ -26,8 +26,8 @@ public class Produit implements Serializable {
     public Produit() {
     }
 
-    public Produit(Long id, String designation, String categorie, String marque ) {
-        this.id = id;
+    public Produit( String designation, String categorie, String marque ) {
+       
         this.designation = designation;
 
         this.categorie = categorie;
@@ -39,11 +39,11 @@ public class Produit implements Serializable {
 
 
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -97,10 +97,6 @@ public class Produit implements Serializable {
         this.dateExp = dateExp;
     }
 
-    @Override
-    public String toString() {
-        return "Produit{" + "id=" + id + ", designation=" + designation + ", prixVente=" + prixVente + ", categorie=" + categorie + ", marque=" + marque + ", remarque=" + remarque + ", dateExp=" + dateExp + '}';
-    }
     
     
     

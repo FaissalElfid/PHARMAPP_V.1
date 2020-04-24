@@ -22,7 +22,7 @@
          <children>
             <ImageView fitHeight="154.0" fitWidth="169.0" layoutX="75.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/pharmapp%20logo%20java.png" />
+                  <Image url="@../images/logo.png" />
                </image>
             </ImageView>
             <Label contentDisplay="CENTER" layoutX="83.0" layoutY="129.0" prefHeight="38.0" prefWidth="154.0" text="Se Connecter" textAlignment="CENTER" textFill="#043d68" textOverrun="CENTER_ELLIPSIS">
