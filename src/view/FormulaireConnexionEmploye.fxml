@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="518.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormulaireConnexionEmployeController">
+   <children>
+      <AnchorPane layoutX="50.0" layoutY="40.0" prefHeight="490.0" prefWidth="432.0" style="-fx-background-color: #DBDBDB;">
+         <children>
+            <Label layoutX="105.0" layoutY="14.0" text="Créer un compte" textFill="#333333" underline="true">
+               <font>
+                  <Font name="System Bold Italic" size="29.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtLogin" layoutX="123.0" layoutY="93.0" prefHeight="29.0" prefWidth="187.0" promptText="Login">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXTextField>
+            <JFXComboBox fx:id="comboRole" layoutX="123.0" layoutY="282.0" prefHeight="29.0" prefWidth="187.0" promptText="Role" />
+            <JFXComboBox fx:id="comboPrevilege" layoutX="123.0" layoutY="361.0" prefHeight="25.0" prefWidth="187.0" promptText="Prévilège" />
+            <JFXButton fx:id="btnAjouterConnexion" layoutX="252.0" layoutY="433.0" onAction="#ajoutEmployeConnexion" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color:#009688;" text="Ajouter" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnAnnuler" layoutX="65.0" layoutY="433.0" onAction="#annuler" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #919191;" text="Annuler" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXPasswordField fx:id="passwordField" layoutX="123.0" layoutY="158.0" prefHeight="25.0" prefWidth="187.0" promptText="Mot de passe" />
+            <JFXPasswordField fx:id="confirmerPasswordField" layoutX="123.0" layoutY="226.0" prefHeight="25.0" prefWidth="187.0" promptText="Confirmer votre mot de passe" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

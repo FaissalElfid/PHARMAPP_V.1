@@ -3,7 +3,45 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/pharmacie_application/src/pharmapp_test/FXMLDocument.fxml</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/bean/Produit.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/util/DateUtil.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/service/ProduitService.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/dao/ClientDao.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/bean/Stock.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/util/DaoEngigne.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/dao/EmployeConnexionDao.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/style/main.css</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/pharmapp_test/main.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/service/UtilisateurService.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/service/EmployeService.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/bean/EmployeConnexion.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/bean/Utilisateur.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/dao/AbstractDao.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/dao/ProduitDao.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/style/TableView.css</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/util/HashUtil.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/controller/FirstController.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/service/EmployeConnexionService.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/dao/StockDao.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/pharmapp_test/Pharmapp_test.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/view/table/Table_Commande.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/pharmapp_test/FXMLDocument.fxml</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/bean/LivraisonDetails.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/dao/UtilisateurDao.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/controller/FormulaireClientController.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/controller/RecupererlePasswordController.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/service/StockService.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/util/PanierLigne.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/nbproject/project.properties</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/dao/EmployeDao.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/controller/FormulaireConnexionEmployeController.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/controller/StockFormController.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/controller/LoginController.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/dao/ConnectDB.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/view/LoginView.fxml</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/bean/Employe.java</file>
+            <file>file:/C:/Users/Faissal/Documents/NetBeansProjects/Pharmapp_test/src/bean/Livraison.java</file>
         </group>
     </open-files>
 </project-private>

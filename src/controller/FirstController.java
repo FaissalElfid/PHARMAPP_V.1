@@ -6,6 +6,8 @@
 package controller;
 
 import bean.Client;
+import bean.Employe;
+import bean.Connexion;
 import bean.Produit;
 import bean.Stock;
 import bean.Vente;
@@ -39,6 +41,8 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import dao.ClientDao;
 import dao.ConnectDB;
+import dao.ConnexionDao;
+import dao.EmployeDao;
 import dao.ProduitDao;
 import dao.StockDao;
 import dao.VenteDao;
@@ -46,10 +50,12 @@ import dao.VenteDetailleDao;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javafx.animation.PauseTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Hyperlink;
@@ -62,9 +68,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
+import service.ConnexionService;
+import service.EmployeService;
 import service.ProduitService;
 import service.VenteService;
+import static util.DateUtil.format;
+import static util.DateUtil.parseToYear;
 import util.PanierLigne;
 
 
@@ -260,7 +271,31 @@ public class FirstController implements Initializable {
     private Label totalPrixPanier;
      @FXML
     private JFXTextField montantPayerPanier;
-     
+
+    @FXML
+    private JFXTextField cin_emp,email_emp, rib_emp, telephone_emp, code_emp;
+
+    @FXML
+    private JFXButton btn_ajout_emp;
+
+    @FXML
+    private JFXDatePicker naissance_emp;
+    @FXML
+    private TableView<Employe> table_emp;
+
+    @FXML
+    private TableColumn<Employe, String> cin_table_emp;
+    @FXML
+    private TableColumn<Employe, String> nom_table_emp;
+
+    @FXML
+    private TableColumn<Employe, String> prenom_table_emp;
+
+    @FXML
+    private TableColumn<Employe, String> telephone_table_emp;
+
+    @FXML
+    private TableColumn<Employe, String> email_table_emp;
     
     @Override
     
@@ -290,8 +325,8 @@ public class FirstController implements Initializable {
          img_emp.setFill(new ImagePattern(image));
                  
         //ajoute des emploi dans combobox
-         ObservableList<String> emploi = FXCollections.observableArrayList("Gérant","Vendeur","Administrateur","Pharmacien");
-        combobox_emp.setItems(emploi);
+//         ObservableList<String> emploi = FXCollections.observableArrayList("Gérant","Vendeur","Administrateur","Pharmacien");
+//        combobox_emp.setItems(emploi);
         //link n'existe pas aud debut 
          text_vente_link_client.setVisible(false);
         modifierHomeAnchorPane.toFront();
@@ -321,6 +356,11 @@ public class FirstController implements Initializable {
         configTabPanier(panierTableView, codeProduitPanier, designationPanier,  categoriePanier , stockPanier,  commandePanier, prixPanier,  totalPanierTableau);
 
         updateTableViewProduits();
+             try {
+                 affichageEmploye();
+             } catch (Exception ex) {
+                 Logger.getLogger(FirstController.class.getName()).log(Level.SEVERE, null, ex);
+             }
  
 
     toggle_btn_passager.selectedProperty().addListener(new ChangeListener < Boolean >()
@@ -709,9 +749,102 @@ public class FirstController implements Initializable {
               stage.show(); 
               
            }
+          private static Connexion employeConnexionId;
+
+    public static Connexion getEmployeConnexionId() {
+        return employeConnexionId;
+    }
+
+    public static void setEmployeConnexion(Connexion employeConnexion) {
+        FirstController.employeConnexionId = employeConnexion;
+    }
+
 	 @FXML
-          private void ajoutEmploye(ActionEvent event){
-            
+          private void ajoutEmploye(ActionEvent event) throws Exception{
+            EmployeService es = new EmployeService();
+            Connexion ec = new Connexion();
+            EmployeDao employeDao =  new EmployeDao();
+            ConnexionDao ecd = new ConnexionDao();
+            ConnexionService ecs = new ConnexionService();
+               String cin = cin_emp.getText();
+               long id = Long.parseLong(code_emp.getText());
+               String numTelephone = telephone_emp.getText();
+               int age = 20;
+               String nom = nom_emp.getText();
+               String rib = rib_emp.getText();
+               String prenom = prenom_emp.getText();
+               String adress = adresse_emp.getText();
+               Employe employe = new Employe();
+         if(cin.length() == 0 || id ==0){
+         es.afficherAlertWarning("Erreur : Veillez verifier le numero cin, age et le code employe que vous avez entrez");
+         
+     }
+         else{
+         if(employeDao.findById(id) != null){
+             es.afficherAlertWarning("L'id de l'employe existe déja !!");
+             
+         }
+         else{
+             //employe.setEmployeConnexion(new EmployeConnexion(id, "none","none","none",false,"none","none",false));
+         
+             System.out.println(ec);
+         employe.setAdress(adress);
+         employe.setAge(age);
+         employe.setCin(cin);
+         employe.setEmail(email_emp.getText());
+         employe.setId(id);
+         employe.setNom(nom);
+         employe.setPrenom(prenom);
+         employe.setTelephone(numTelephone);
+         employe.setRib(rib);
+         employeDao.save(employe);
+         ec.setId(id);
+         ec.setBlocked(false);
+         ec.setChangementPassword("none");
+         ec.setConnected(false);
+         ec.setLogin("none");
+         ec.setPassword("none");
+         ec.setPrevilege("none");
+         ec.setRole("none");
+         ec.setTentative(3);
+         ec.setEmploye(employe);
+         setEmployeConnexion(ec);
+         ecd.save(ec);
+         
+         FXMLLoader fxmlLoader = new  FXMLLoader(getClass().getResource("/view/FormulaireConnexionEmploye.fxml"));
+               Parent root1=(Parent)fxmlLoader.load();
+               Stage stage=new Stage();
+              stage.setTitle("Connexion");
+              stage.setScene(new Scene(root1));
+              stage.setResizable(false);
+              stage.show();
+              stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Alert a = new Alert(AlertType.NONE); 
+                        a.setAlertType(AlertType.INFORMATION); 
+                        a.setContentText("Votre employer est bien créer");
+                        a.show();
+                try {
+                    affichageEmploye();
+                } catch (Exception ex) {
+                    Logger.getLogger(FirstController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+         });
+
+          }}}
+        //cin_table_emp,nom_table_emp,prenom_table_emp,telephone_table_emp,role_table_emp,email_table_emp
+
+          public void affichageEmploye() throws Exception{
+              EmployeDao ed = new EmployeDao();
+              cin_table_emp.setCellValueFactory(new PropertyValueFactory<>("cin"));
+              nom_table_emp.setCellValueFactory(new PropertyValueFactory<>("nom"));
+              prenom_table_emp.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+              telephone_table_emp.setCellValueFactory(new PropertyValueFactory<>("telephone"));
+              email_table_emp.setCellValueFactory(new PropertyValueFactory<>("nom"));
+              ObservableList<Employe> employes = FXCollections.observableArrayList(ed.findAll());
+              table_emp.setItems(employes);
           }
    
     @FXML

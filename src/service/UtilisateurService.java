@@ -24,6 +24,6 @@ public class UtilisateurService {
     UtilisateurDao userDao = new UtilisateurDao();
     public void initDb() throws Exception{
        
-        userDao.save(new Utilisateur("f1", 29,"el fid","faissal","@gmail.com","taza","Z12345","erhtl","0682484660","Faissalelfid","mot de passe"));
+        //userDao.save(new Utilisateur("f1", 29,"el fid","faissal","@gmail.com","taza","Z12345","erhtl","0682484660","Faissalelfid","mot de passe"));
     }
 }
