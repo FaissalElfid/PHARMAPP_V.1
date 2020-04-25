@@ -6,7 +6,7 @@
 package service;
 
 import bean.Employe;
-import bean.Connexion;
+import bean.ConnexionEmp;
 import dao.ConnexionDao;
 import dao.EmployeDao;
 import java.util.Date;
@@ -25,9 +25,9 @@ public class ConnexionService {
     HashUtil coder = new HashUtil();
     ConnexionDao ecd = new ConnexionDao();
     EmployeService es = new EmployeService();
-    public Connexion findById(long id) throws Exception{
-        Connexion ec = new Connexion();
-        for (Connexion ecs: ecd.findAll()){
+    public ConnexionEmp findById(long id) throws Exception{
+        ConnexionEmp ec = new ConnexionEmp();
+        for (ConnexionEmp ecs: ecd.findAll()){
             if(ecs.getId() == id){
                 return ecs;
             }
@@ -35,16 +35,16 @@ public class ConnexionService {
         return null;
        }
 
-    public Connexion findByLogin(String login) throws Exception{
+    public ConnexionEmp findByLogin(String login) throws Exception{
         Employe e = es.findByLogin(login);
-        for(Connexion employeConnexion: ecd.findAll()){
+        for(ConnexionEmp employeConnexion: ecd.findAll()){
             if(employeConnexion.getLogin().equals(login)){
                 return employeConnexion;
             }
         }
         return null;   
     }
-    public int verifier(Connexion us, String password) {
+    public int verifier(ConnexionEmp us, String password) {
 	String code = coder.encryptPassword(password);
 		if(us.getPassword().equals(code) == false) {
 			System.out.println("password faux");
@@ -56,7 +56,7 @@ public class ConnexionService {
 		}
 	}
     public int deblocker(String login) throws Exception {
-		Connexion userLoaded = new Connexion();
+		ConnexionEmp userLoaded = new ConnexionEmp();
 		userLoaded = findByLogin(login);
 		if (userLoaded == null) {
 			System.out.println("le login n'existe pas ");
@@ -81,7 +81,7 @@ public class ConnexionService {
 	}
 	}
     public int seConnecter(String login,String passwd) throws Exception {
-		Connexion userLoaded = new Connexion();
+		ConnexionEmp userLoaded = new ConnexionEmp();
 		//HistoriqueConnexion hs = new HistoriqueConnexion();
 		userLoaded = findByLogin(login);
 		if (userLoaded == null) {
@@ -118,7 +118,7 @@ public class ConnexionService {
 		}
 	}
     	public int seDeconnecter(String login) throws Exception {
-		Connexion userLoaded = new Connexion();
+		ConnexionEmp userLoaded = new ConnexionEmp();
 		userLoaded = findByLogin(login);
 		if (userLoaded == null) {
 			System.out.println("le login n'existe pas ");
@@ -144,7 +144,7 @@ public class ConnexionService {
 	}
         
 	public void crypter(String login) throws Exception { //cette fonction suit le save pour coder le password
-		Connexion user = new Connexion();
+		ConnexionEmp user = new ConnexionEmp();
 			user = 	findByLogin(login);
 			if(user != null) {
 		String code = coder.encryptPassword(user.getPassword());
@@ -153,14 +153,14 @@ public class ConnexionService {
 			}
 	}
         //public int changementVerify(String login) 
-	public void Block(Connexion user) throws Exception {
+	public void Block(ConnexionEmp user) throws Exception {
 		user.setBlocked(true);
 		ecd.update(user);
 	}
         public int ajouterEmployeConnexion(long id, String login, String previlege, String role, String password, boolean blocked) throws Exception{
             Employe employe = new Employe();
             EmployeDao employeDao = new EmployeDao();
-            Connexion employeConnexion = new Connexion();
+            ConnexionEmp employeConnexion = new ConnexionEmp();
             employe = employeDao.findById(id);
             employeConnexion = findById(id);
             if(employe == null){
@@ -183,7 +183,7 @@ public class ConnexionService {
             }
         }
         public int changementVerify(String login) throws Exception {
-		Connexion user = new Connexion();
+		ConnexionEmp user = new ConnexionEmp();
 		user = findByLogin(login);
 		if (user== null) {
 			System.out.println("le login n'existe pas ");
@@ -209,7 +209,7 @@ public class ConnexionService {
 		}}
 	}
         public int changerPassword(String login,String password,String newPassword) throws Exception {
-		Connexion userLoaded = new Connexion();
+		ConnexionEmp userLoaded = new ConnexionEmp();
 		String date_actuel = format(new Date());
 		userLoaded = findByLogin(login);
 		if (userLoaded == null) {

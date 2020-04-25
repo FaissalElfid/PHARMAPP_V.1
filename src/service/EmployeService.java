@@ -6,7 +6,7 @@
 package service;
 
 import bean.Employe;
-import bean.Connexion;
+import bean.ConnexionEmp;
 import dao.ConnexionDao;
 import dao.EmployeDao;
 import java.util.List;
@@ -33,7 +33,7 @@ public class EmployeService {
         List<Employe> employes;
         employes = employeDao.findAll();
         for(Employe employe: employes){
-            Connexion ec = new Connexion();
+            ConnexionEmp ec = new ConnexionEmp();
             ConnexionService ecs = new ConnexionService();
             ec = employeConnexionDao.findById(employe.getId());
             if(ec.getLogin().equals(login)){

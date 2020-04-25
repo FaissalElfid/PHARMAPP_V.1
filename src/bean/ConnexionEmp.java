@@ -9,7 +9,7 @@ package bean;
  *
  * @author Faissal
  */
-public class Connexion {
+public class ConnexionEmp {
     private long id;
     private String login;
     private String previlege;
@@ -22,10 +22,10 @@ public class Connexion {
     private boolean blocked;
     private Employe employe;
 
-    public Connexion() {
+    public ConnexionEmp() {
 
     }
-    public Connexion(long id, String login, String previlege, String role, boolean connected, String password, String changementPassword, boolean blocked) {
+    public ConnexionEmp(long id, String login, String previlege, String role, boolean connected, String password, String changementPassword, boolean blocked) {
         this.id = id;
         this.login = login;
         this.previlege = previlege;

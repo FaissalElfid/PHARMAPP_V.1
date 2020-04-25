@@ -38,7 +38,7 @@ public class ConnectDB {
         return mycnx;
     }
 
-    private ConnectDB() {
+    ConnectDB() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             url += dbName;

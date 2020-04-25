@@ -6,7 +6,7 @@
 package controller;
 
 import bean.Employe;
-import bean.Connexion;
+import bean.ConnexionEmp;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -48,7 +48,7 @@ public class RecupererlePasswordController implements Initializable{
     
     private EmployeService es = new EmployeService();
     private Employe employe = new Employe();
-    private Connexion ec = new Connexion();
+    private ConnexionEmp ec = new ConnexionEmp();
     private ConnexionDao ecs = new ConnexionDao();
     private ConnexionService ecService = new ConnexionService();
     private double aleatoire;

@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import dao.StockDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -31,16 +32,22 @@ public class StockFormController {
 
     @FXML
     void saveProduit(ActionEvent event) throws Exception {
-        ajouter.getScene().getWindow().hide();
+        
         FirstController fc = new FirstController();
         Stock stock = new Stock();
         Long code = fc.getCode();
         StockDao stockDao= new StockDao();
         stock = stockDao.findById(code);
+        quantite.setText(""+stock.getQuantite());
+        quantiteDefec.setText(""+stock.getQuantitDefectueise());
+        seuilMin.setText(""+stock.getQuantitemin());
         stock.setQuantitDefectueise(Double.parseDouble(quantiteDefec.getText()));
         stock.setQuantitemin(Double.parseDouble(seuilMin.getText()));
         stock.setQuantite(Double.parseDouble(quantite.getText()));
         stockDao.update(stock);
+        ajouter.getScene().getWindow().fireEvent(new WindowEvent(
+            ajouter.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST));
+        ajouter.getScene().getWindow().hide();
 
     }
     

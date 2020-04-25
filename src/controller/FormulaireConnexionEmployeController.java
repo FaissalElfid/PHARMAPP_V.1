@@ -6,7 +6,7 @@
 package controller;
 
 import bean.Employe;
-import bean.Connexion;
+import bean.ConnexionEmp;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
@@ -62,7 +62,7 @@ public class FormulaireConnexionEmployeController  implements Initializable{
         HashUtil coder = new HashUtil();
         //ecs.ajouterEmployeConnexion(id, txtLogin.getText(), comboPrevilege.getSelectionModel().getSelectedItem(), comboRole.getSelectionModel().getSelectedItem(), passwordField.getText(), false);
 
-            Connexion employeConnexion = new Connexion();
+            ConnexionEmp employeConnexion = new ConnexionEmp();
             employeConnexion = FirstController.getEmployeConnexionId();
             if(employeConnexion == null){
                 System.out.println("L employe que vous demander n xiste pas");

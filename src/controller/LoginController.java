@@ -36,8 +36,8 @@ public class LoginController {
     
     @FXML
     void loginInAction(ActionEvent event) throws Exception {
-        ConnexionService ecs = new ConnexionService();
-        //int res = ecs.seConnecter(loginField.getText(), passwordField.getText());
+//        ConnexionService ecs = new ConnexionService();
+//        int res = ecs.seConnecter(loginField.getText(), passwordField.getText());
         //if(res != 1){
 //                        Alert a = new Alert(Alert.AlertType.NONE); 
 //                        a.setAlertType(Alert.AlertType.ERROR); 

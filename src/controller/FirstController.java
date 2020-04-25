@@ -7,7 +7,7 @@ package controller;
 
 import bean.Client;
 import bean.Employe;
-import bean.Connexion;
+import bean.ConnexionEmp;
 import bean.Produit;
 import bean.Stock;
 import bean.Vente;
@@ -749,20 +749,20 @@ public class FirstController implements Initializable {
               stage.show(); 
               
            }
-          private static Connexion employeConnexionId;
+          private static ConnexionEmp employeConnexionId;
 
-    public static Connexion getEmployeConnexionId() {
+    public static ConnexionEmp getEmployeConnexionId() {
         return employeConnexionId;
     }
 
-    public static void setEmployeConnexion(Connexion employeConnexion) {
+    public static void setEmployeConnexion(ConnexionEmp employeConnexion) {
         FirstController.employeConnexionId = employeConnexion;
     }
 
 	 @FXML
           private void ajoutEmploye(ActionEvent event) throws Exception{
             EmployeService es = new EmployeService();
-            Connexion ec = new Connexion();
+            ConnexionEmp ec = new ConnexionEmp();
             EmployeDao employeDao =  new EmployeDao();
             ConnexionDao ecd = new ConnexionDao();
             ConnexionService ecs = new ConnexionService();
@@ -875,6 +875,10 @@ public class FirstController implements Initializable {
         else{
             produitDao.delete(produit);
             sd.delete(stock);
+            Alert a = new Alert(AlertType.NONE); 
+            a.setAlertType(AlertType.CONFIRMATION); 
+            a.setContentText("Le produit est bien supprimer ");
+            a.show();
             updateTableViewProduits();
         }
     }
@@ -891,12 +895,12 @@ public class FirstController implements Initializable {
             System.out.println("le code produit que vous demander est introuvable");
         } else {
             modifierAnchorPane.toFront();
-            designationProduitModifierField.setText(stock.getProduit().getDesignation());
-            marqueProduitModifierField.setText(stock.getProduit().getMarque());
-            categorieProduitModifierField.setText(stock.getProduit().getCategorie());
-            prixVenteModifierField.setText("" + stock.getProduit().getPrixVente());
-            codeProduitModifier.setText(""+stock.getProduit().getId());
-            remarqueProduitModifierArea.setText(stock.getProduit().getRemarque());
+            designationProduitModifierField.setText(produit.getDesignation());
+            marqueProduitModifierField.setText(produit.getMarque());
+            categorieProduitModifierField.setText(produit.getCategorie());
+            prixVenteModifierField.setText("" + produit.getPrixVente());
+            codeProduitModifier.setText(""+produit.getId());
+            remarqueProduitModifierArea.setText(produit.getRemarque());
 
         }
     }
@@ -912,15 +916,34 @@ public class FirstController implements Initializable {
         produit.setDesignation(designationProduitModifierField.getText());
         produit.setMarque(marqueProduitModifierField.getText());
         produit.setCategorie(categorieProduitModifierField.getText());
+        produit.setPrixVente(Double.parseDouble(prixVenteModifierField.getText()));
+        produit.setRemarque(remarqueProduitModifierArea.getText());
+        produit.setDateExp(dateExpirationModifierField.getValue().toString());
+            code = produit.getId();
         FXMLLoader fxmlLoader = new  FXMLLoader(getClass().getResource("/view/ProduitStockView.fxml"));
                Parent root1=(Parent)fxmlLoader.load();
                Stage stage=new Stage();
               stage.setTitle("Stock");
               stage.setScene(new Scene(root1));
               stage.setResizable(false);
-              stage.show(); 
+              stage.show();
+              stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Alert a = new Alert(AlertType.NONE); 
+                        a.setAlertType(AlertType.INFORMATION); 
+                        a.setContentText("Votre employer est bien modifié");
+                        a.show();
+                        updateTableViewProduits();
+                try {
+                    affichageEmploye();
+                } catch (Exception ex) {
+                    Logger.getLogger(FirstController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+         });
         produitDao.update(produit);
-        updateTableViewProduits();
+        
         PauseTransition visiblePause = new PauseTransition(
             Duration.seconds(3)
             );
